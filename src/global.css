@@ -4,6 +4,7 @@
 :root {
   --background: var(--color-brand-50);
   --foreground: #0a0a0a;
+  --color-brand-400-alpha: rgba(59, 130, 246, 0.4); /* brand-500 with alpha */
 }
 
 @media (prefers-color-scheme: dark) {
@@ -34,6 +35,7 @@
 /* Theme Variables */
 @theme {
   --color-background: var(--background);
+  --color-brand-400-alpha: rgba(59, 130, 246, 0.4); /* brand-500 with alpha */
   --color-foreground: var(--foreground);
 
   --font-sans: var(--font-geist-sans);

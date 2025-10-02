@@ -58,7 +58,7 @@ const GlowingOrb = ({ delay = 0 }) => {
       className="absolute w-96 h-96 rounded-full blur-3xl opacity-20 animate-pulse"
       style={{
         background:
-          "radial-gradient(circle, rgba(16, 185, 129, 0.4) 0%, transparent 70%)",
+          "radial-gradient(circle, var(--color-brand-400-alpha) 0%, transparent 70%)",
         animationDelay: `${delay}s`,
         animationDuration: "4s",
       }}
@@ -109,13 +109,13 @@ export const Hero = ({ scrollToSection, containerVariants, itemVariants }) => {
       icon: "🔐",
       text: "Cybersecurity",
       color: "cyan",
-      gradient: "from-cyan-400 to-blue-600",
+      gradient: "from-cyan-400 to-brand-600",
     },
     {
       icon: "💼",
       text: "Enterprise Tech",
       color: "blue",
-      gradient: "from-blue-400 to-indigo-600",
+      gradient: "from-brand-400 to-indigo-600",
     },
   ];
 
@@ -159,7 +159,7 @@ export const Hero = ({ scrollToSection, containerVariants, itemVariants }) => {
                   className={`absolute inset-0 flex items-center justify-center transition-transform duration-500 ${
                     isHovered ? "scale-110 rotate-12" : "scale-100"
                   }`}>
-                  <div className="text-8xl font-bold bg-gradient-to-r from-emerald-400 via-cyan-400 to-blue-400 bg-clip-text text-transparent">
+                  <div className="text-8xl font-bold bg-gradient-to-r from-emerald-400 via-cyan-400 to-brand-400 bg-clip-text text-transparent">
                     <img
                       src="/brand-logo/nexus-green.svg"
                       alt="Nexus Logo"
@@ -245,7 +245,7 @@ export const Hero = ({ scrollToSection, containerVariants, itemVariants }) => {
           {/* CTA Button with Advanced Effects */}
           <div className="relative inline-block group">
             {/* Button Glow Ring */}
-            <div className="absolute -inset-2 bg-gradient-to-r from-emerald-400 via-cyan-400 to-blue-400 rounded-full blur-lg opacity-50 group-hover:opacity-100 transition duration-500 animate-pulse" />
+            <div className="absolute -inset-2 bg-gradient-to-r from-emerald-400 via-cyan-400 to-brand-400 rounded-full blur-lg opacity-50 group-hover:opacity-100 transition duration-500 animate-pulse" />
 
             {/* Main Button */}
             <button
