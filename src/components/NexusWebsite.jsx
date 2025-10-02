@@ -19,7 +19,6 @@ const itemVariants = {
 const NexusWebsite = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { scrollY } = useScroll();
-  const scrollYProgress = useTransform(scrollY, [0, 300], [0, 1]);
 
   const scrollToSection = (id) => {
     const element = document.getElementById(id);
