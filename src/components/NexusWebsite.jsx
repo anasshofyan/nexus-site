@@ -5,6 +5,7 @@ import { TechParticleField } from "./TechParticleField";
 import { Hero } from "../sections/Hero";
 import { AnimatedSection } from "../sections/AnimatedSection";
 import { AdvancedNavbar } from "./AdvancedNavbar";
+import { AdvancedFooter } from "./AdvancedFooter";
 
 // AnimatedSection dipisah agar lebih reusable dan tidak membuat ulang varian di setiap render
 const itemVariants = {
@@ -174,7 +175,7 @@ const NexusWebsite = () => {
       <Hero scrollToSection={scrollToSection} itemVariants={itemVariants} />
 
       {/* Why Sponsor */}
-      <AnimatedSection id="why">
+      {/* <AnimatedSection id="why">
         <div className="py-20 px-4">
           <div className="max-w-7xl mx-auto">
             <motion.h2
@@ -202,10 +203,10 @@ const NexusWebsite = () => {
             </div>
           </div>
         </div>
-      </AnimatedSection>
+      </AnimatedSection> */}
 
       {/* Audience */}
-      <AnimatedSection id="audience">
+      {/* <AnimatedSection id="audience">
         <div className="py-20 px-4 bg-[#1e3a8a]/50">
           <div className="max-w-6xl mx-auto">
             <motion.h2
@@ -252,10 +253,10 @@ const NexusWebsite = () => {
             </div>
           </div>
         </div>
-      </AnimatedSection>
+      </AnimatedSection> */}
 
       {/* Format */}
-      <AnimatedSection id="format">
+      {/* <AnimatedSection id="format">
         <div className="py-20 px-4">
           <div className="max-w-7xl mx-auto">
             <motion.h2
@@ -289,10 +290,10 @@ const NexusWebsite = () => {
             </div>
           </div>
         </div>
-      </AnimatedSection>
+      </AnimatedSection> */}
 
       {/* Packages */}
-      <AnimatedSection id="packages">
+      {/* <AnimatedSection id="packages">
         <div className="py-20 px-4">
           <div className="max-w-7xl mx-auto">
             <motion.h2
@@ -330,10 +331,10 @@ const NexusWebsite = () => {
             </div>
           </div>
         </div>
-      </AnimatedSection>
+      </AnimatedSection> */}
 
       {/* Tour */}
-      <AnimatedSection id="tour">
+      {/* <AnimatedSection id="tour">
         <div className="py-20 px-4 bg-[#1e3a8a]/50">
           <div className="max-w-7xl mx-auto">
             <motion.h2
@@ -368,10 +369,10 @@ const NexusWebsite = () => {
             </div>
           </div>
         </div>
-      </AnimatedSection>
+      </AnimatedSection> */}
 
       {/* Contact */}
-      <AnimatedSection id="contact">
+      {/* <AnimatedSection id="contact">
         <div className="py-20 px-4">
           <div className="max-w-7xl mx-auto">
             <motion.h2
@@ -456,10 +457,10 @@ const NexusWebsite = () => {
             </motion.div>
           </div>
         </div>
-      </AnimatedSection>
+      </AnimatedSection> */}
 
       {/* Footer */}
-      <motion.footer
+      {/* <motion.footer
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         className="bg-[#1e3a8a] py-8 px-4 relative z-10 border-t-2 border-emerald-400/20">
@@ -468,7 +469,8 @@ const NexusWebsite = () => {
             © 2026 NEXUS by TEH GROUP. All rights reserved.
           </p>
         </div>
-      </motion.footer>
+      </motion.footer> */}
+      <AdvancedFooter />
     </div>
   );
 };
