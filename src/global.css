@@ -1,0 +1,66 @@
+@import "tailwindcss";
+
+/* Root Variables */
+:root {
+  --background: var(--color-brand-50); /* selalu light */
+  --foreground: #171717; /* default text gelap */
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: var(--color-brand-50); /* tetap light */
+    --foreground: #0a0a0a; /* text jadi gelap di dark supaya kontras */
+  }
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  display: none;
+}
+
+/* Theme Variables */
+@theme {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+
+  --color-brand-foreground: #ffffff;
+
+  --color-brand: #2f403d;
+  --color-brand-50: #eef3f1;
+  --color-brand-100: #dce7e3;
+  --color-brand-200: #bad0c7;
+  --color-brand-300: #98b9ac;
+  --color-brand-400: #7fa696;
+  --color-brand-500: #679683;
+  --color-brand-600: #4e7a69;
+  --color-brand-700: #3e6154;
+  --color-brand-800: #2f403d;
+  --color-brand-900: #1f2823;
+
+  --color-second-brand: #f8a33b;
+  --color-second-brand-50: #fff7ec;
+  --color-second-brand-100: #ffe7c4;
+  --color-second-brand-200: #ffd08a;
+  --color-second-brand-300: #ffb851;
+  --color-second-brand-400: #f8a33b; /* base */
+  --color-second-brand-500: #e58f2e;
+  --color-second-brand-600: #c97323;
+  --color-second-brand-700: #a3581a;
+  --color-second-brand-800: #7a3f11;
+  --color-second-brand-900: #4f2608;
+
+  /* Accent untuk efek */
+  --color-accent-pink: #ff0080;
+  --color-accent-purple: #7928ca;
+  --color-accent-cyan: #2afadf;
+}
+
+/* Base Styles */
+body {
+  background: var(--color-background);
+  color: var(--color-foreground);
+  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+}
