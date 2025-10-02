@@ -1,25 +1,12 @@
-import { useState, useEffect, useRef } from "react";
-import {
-  Menu,
-  X,
-  ChevronRight,
-  MapPin,
-  Mail,
-  Phone,
-  Calendar,
-} from "lucide-react";
-import { motion, useScroll, useTransform, useInView } from "framer-motion";
-import * as THREE from "three";
+import { useState } from "react";
+import { ChevronRight, MapPin, Mail, Phone, Calendar } from "lucide-react";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { TechParticleField } from "./TechParticleField";
+import { Hero } from "../sections/Hero";
+import { AnimatedSection } from "../sections/AnimatedSection";
+import { AdvancedNavbar } from "./AdvancedNavbar";
 
 // AnimatedSection dipisah agar lebih reusable dan tidak membuat ulang varian di setiap render
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.1 },
-  },
-};
 const itemVariants = {
   hidden: { y: 20, opacity: 0 },
   visible: {
@@ -29,31 +16,10 @@ const itemVariants = {
   },
 };
 
-const AnimatedSection = ({ children, id }) => {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: false, amount: 0.3 });
-  return (
-    <motion.section
-      ref={ref}
-      id={id}
-      initial="hidden"
-      animate={isInView ? "visible" : "hidden"}
-      variants={containerVariants}
-      className="relative z-10">
-      {children}
-    </motion.section>
-  );
-};
-
 const NexusWebsite = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { scrollY } = useScroll();
   const scrollYProgress = useTransform(scrollY, [0, 300], [0, 1]);
-  const navBackground = useTransform(
-    scrollYProgress,
-    [0, 1],
-    ["rgba(30, 58, 138, 0)", "rgba(30, 58, 138, 0.95)"]
-  );
 
   const scrollToSection = (id) => {
     const element = document.getElementById(id);
@@ -140,7 +106,8 @@ const NexusWebsite = () => {
       <TechParticleField />
 
       {/* Navigation */}
-      <motion.nav
+      <AdvancedNavbar scrollToSection={scrollToSection} />
+      {/* <motion.nav
         style={{ backgroundColor: navBackground }}
         className="fixed w-full z-50 backdrop-blur-md shadow-lg">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -150,11 +117,12 @@ const NexusWebsite = () => {
               animate={{ x: 0, opacity: 1 }}
               className="flex items-center space-x-3">
               <div className="text-2xl md:text-3xl font-bold tracking-wider">
-                <span className="text-emerald-400">N≡XUS</span>
+                <img
+                  src="/brand-logo/nexus-teh-white.svg"
+                  alt="Nexus Logo"
+                  className="w-50 h-50 inline-block mr-2"
+                />
               </div>
-              <span className="hidden md:block text-xs text-gray-300">
-                By TEH GROUP
-              </span>
             </motion.div>
 
             <div className="hidden md:flex space-x-6 lg:space-x-8">
@@ -201,85 +169,10 @@ const NexusWebsite = () => {
             </div>
           </motion.div>
         )}
-      </motion.nav>
+      </motion.nav> */}
 
       {/* Hero */}
-      <AnimatedSection id="hero">
-        <div className="min-h-screen flex items-center justify-center pt-20 px-4">
-          <div className="text-center z-10">
-            <motion.h1
-              initial={{ scale: 0.5, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              className="text-5xl sm:text-6xl md:text-8xl font-bold mb-6">
-              <motion.span
-                animate={{
-                  textShadow: [
-                    "0 0 20px #10b981",
-                    "0 0 40px #10b981",
-                    "0 0 20px #10b981",
-                  ],
-                }}
-                transition={{ duration: 2, repeat: Infinity }}
-                className="text-emerald-400">
-                N≡XUS
-              </motion.span>
-            </motion.h1>
-
-            <motion.h2
-              initial={{ y: 50, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              className="text-2xl sm:text-3xl md:text-4xl mb-8 font-light">
-              Connecting Innovation Across the Asia-Pacific
-            </motion.h2>
-
-            <motion.div
-              variants={containerVariants}
-              initial="hidden"
-              animate="visible"
-              className="flex flex-wrap justify-center gap-4 mb-8">
-              {[
-                {
-                  text: "🤖 Artificial Intelligence",
-                  color:
-                    "border-emerald-400/40 hover:border-emerald-400 hover:shadow-[0_0_30px_rgba(16,185,129,0.5)]",
-                },
-                {
-                  text: "🔐 Cybersecurity",
-                  color:
-                    "border-cyan-400/40 hover:border-cyan-400 hover:shadow-[0_0_30px_rgba(6,182,212,0.5)]",
-                },
-                {
-                  text: "💼 Enterprise Tech",
-                  color:
-                    "border-brand-400/40 hover:border-brand-400 hover:shadow-[0_0_30px_rgba(59,130,246,0.5)]",
-                },
-              ].map((item, idx) => (
-                <motion.div
-                  key={idx}
-                  variants={itemVariants}
-                  whileHover={{ scale: 1.1 }}
-                  className={`bg-brand-900/50 backdrop-blur-sm px-6 py-3 rounded-lg border-2 ${item.color} cursor-pointer transition-all duration-300`}>
-                  <span className="text-lg md:text-xl font-medium">
-                    {item.text}
-                  </span>
-                </motion.div>
-              ))}
-            </motion.div>
-
-            <motion.button
-              initial={{ y: 50, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              whileHover={{
-                scale: 1.1,
-                boxShadow: "0 0 40px rgba(16, 185, 129, 0.6)",
-              }}
-              onClick={() => scrollToSection("why")}
-              className="bg-emerald-500 hover:bg-emerald-600 px-8 py-4 rounded-full font-semibold text-lg shadow-lg transition-all">
-              Discover More
-            </motion.button>
-          </div>
-        </div>
-      </AnimatedSection>
+      <Hero scrollToSection={scrollToSection} itemVariants={itemVariants} />
 
       {/* Why Sponsor */}
       <AnimatedSection id="why">
