@@ -1,36 +1,177 @@
-import { motion } from "framer-motion";
-import { AnimatedSection } from "./AnimatedSection";
+import { motion, useScroll, useTransform, useInView } from "framer-motion";
+import { useRef } from "react";
+import { Sparkles, Target, TrendingUp, Globe, Award } from "lucide-react";
 
-export const WhySponsor = ({ itemVariants, whyReasons }) => {
+const whyReasons = [
+  {
+    icon: Target,
+    title: "Targeted Audience",
+    desc: "Gain direct access to 200 Chief, Director, Head, and Lead-level prospects in every city.",
+    gradient: "from-blue-500 to-cyan-500",
+    delay: 0,
+  },
+  {
+    icon: TrendingUp,
+    title: "Maximized ROI",
+    desc: "Move beyond brand awareness to generate qualified leads, close deals, and build relationships in a high-intensity environment.",
+    gradient: "from-purple-500 to-pink-500",
+    delay: 0.2,
+  },
+  {
+    icon: Globe,
+    title: "Regional Dominance",
+    desc: "Build your brand presence across multiple key APAC markets in a single, coordinated campaign.",
+    gradient: "from-emerald-500 to-teal-500",
+    delay: 0.4,
+  },
+  {
+    icon: Award,
+    title: "Quality Over Quantity",
+    desc: "Our curated matchmaking ensures your time is spent with the right people who have real budget and authority.",
+    gradient: "from-orange-500 to-red-500",
+    delay: 0.6,
+  },
+];
+
+const Card = ({ reason, index }) => {
+  const cardRef = useRef(null);
+  const isInView = useInView(cardRef, { once: false, amount: 0.3 });
+  const { scrollYProgress } = useScroll({
+    target: cardRef,
+    offset: ["start end", "end start"],
+  });
+
+  const y = useTransform(scrollYProgress, [0, 1], [100, -100]);
+  const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0]);
+  const scale = useTransform(
+    scrollYProgress,
+    [0, 0.2, 0.8, 1],
+    [0.8, 1, 1, 0.8]
+  );
+  const rotate = useTransform(scrollYProgress, [0, 1], [-5, 5]);
+
+  const Icon = reason.icon;
+
   return (
-    <AnimatedSection id="why">
-      <div className="py-20 px-4">
-        <div className="max-w-7xl mx-auto">
-          <motion.h2
-            variants={itemVariants}
-            className="text-4xl md:text-5xl font-bold text-center mb-16 text-emerald-400">
-            Why Sponsor Nexus?
-          </motion.h2>
-          <div className="grid md:grid-cols-2 gap-8">
-            {whyReasons.map((reason, idx) => (
-              <motion.div
-                key={idx}
-                variants={itemVariants}
-                whileHover={{
-                  scale: 1.05,
-                  boxShadow: "0 20px 60px rgba(16, 185, 129, 0.3)",
-                }}
-                className="bg-brand-900/30 backdrop-blur-sm p-8 rounded-2xl border-2 border-emerald-400/20 hover:border-emerald-400/60 cursor-pointer transition-all">
-                <div className="text-5xl mb-4">{reason.icon}</div>
-                <h3 className="text-2xl font-bold mb-4 text-emerald-400">
-                  {reason.title}
-                </h3>
-                <p className="text-gray-200 leading-relaxed">{reason.desc}</p>
-              </motion.div>
-            ))}
-          </div>
+    <motion.div
+      ref={cardRef}
+      style={{ y, opacity, scale, rotate }}
+      initial={{ opacity: 0, y: 50 }}
+      animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
+      transition={{
+        duration: 0.8,
+        delay: reason.delay,
+        ease: [0.21, 0.47, 0.32, 0.98],
+      }}
+      className="relative group">
+      <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/20 to-cyan-500/20 rounded-3xl blur-xl group-hover:blur-2xl transition-all duration-500 opacity-0 group-hover:opacity-100" />
+
+      <motion.div
+        whileHover={{ y: -10 }}
+        transition={{ type: "spring", stiffness: 300, damping: 20 }}
+        className="relative bg-gradient-to-br from-slate-900/90 to-slate-800/90 backdrop-blur-xl p-8 rounded-3xl border border-emerald-500/20 hover:border-emerald-400/60 overflow-hidden group cursor-pointer">
+        <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/0 to-cyan-500/0 group-hover:from-emerald-500/10 group-hover:to-cyan-500/10 transition-all duration-500" />
+
+        <div className="absolute top-0 right-0 w-40 h-40 bg-gradient-to-br from-emerald-500/20 to-transparent rounded-full blur-3xl group-hover:scale-150 transition-transform duration-700" />
+
+        <div className="relative z-10">
+          <motion.div
+            whileHover={{ rotate: 360, scale: 1.1 }}
+            transition={{ duration: 0.6 }}
+            className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${reason.gradient} p-3 mb-6 shadow-lg`}>
+            <Icon className="w-full h-full text-white" />
+          </motion.div>
+
+          <motion.div
+            initial={{ width: 0 }}
+            animate={isInView ? { width: "60px" } : { width: 0 }}
+            transition={{ duration: 0.6, delay: reason.delay + 0.3 }}
+            className={`h-1 bg-gradient-to-r ${reason.gradient} mb-4 rounded-full`}
+          />
+
+          <h3 className="text-2xl font-bold mb-4 text-white group-hover:text-emerald-400 transition-colors duration-300">
+            {reason.title}
+          </h3>
+
+          <p className="text-gray-300 leading-relaxed group-hover:text-gray-100 transition-colors duration-300">
+            {reason.desc}
+          </p>
+
+          <motion.div
+            className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-emerald-500 to-cyan-500"
+            initial={{ scaleX: 0 }}
+            whileHover={{ scaleX: 1 }}
+            transition={{ duration: 0.3 }}
+            style={{ originX: 0 }}
+          />
         </div>
-      </div>
-    </AnimatedSection>
+      </motion.div>
+    </motion.div>
   );
 };
+
+export default function WhySponsor() {
+  const containerRef = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start end", "end start"],
+  });
+
+  const headerY = useTransform(scrollYProgress, [0, 0.5], [100, 0]);
+  const headerOpacity = useTransform(scrollYProgress, [0, 0.3], [0, 1]);
+  const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
+
+  return (
+    <section
+      id="why"
+      ref={containerRef}
+      className="relative min-h-screen flex items-center justify-center py-32 px-4 overflow-hidden bg-gradient-to-br from-slate-950 via-emerald-950/20 to-slate-950">
+      <motion.div
+        style={{ y: backgroundY }}
+        className="absolute inset-0 opacity-30">
+        <div className="absolute top-20 left-10 w-72 h-72 bg-emerald-500/30 rounded-full blur-3xl" />
+        <div className="absolute bottom-20 right-10 w-96 h-96 bg-cyan-500/20 rounded-full blur-3xl" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-purple-500/10 rounded-full blur-3xl" />
+      </motion.div>
+
+      <div className="max-w-7xl mx-auto relative z-10 w-full">
+        <motion.div
+          style={{ y: headerY, opacity: headerOpacity }}
+          className="text-center mb-20">
+          <motion.div
+            initial={{ scale: 0 }}
+            whileInView={{ scale: 1 }}
+            transition={{ type: "spring", stiffness: 200, delay: 0.2 }}
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-500/10 border border-emerald-500/30 mb-6">
+            <Sparkles className="w-5 h-5 text-emerald-400" />
+            <span className="text-emerald-400 font-semibold">
+              Premium Benefits
+            </span>
+          </motion.div>
+
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-emerald-400 via-cyan-400 to-emerald-400 bg-clip-text text-transparent">
+            Why Sponsor Nexus?
+          </motion.h2>
+
+          <motion.p
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.5 }}
+            className="text-xl text-gray-400 max-w-2xl mx-auto">
+            Unlock unprecedented opportunities and maximize your brand's impact
+          </motion.p>
+        </motion.div>
+
+        <div className="grid md:grid-cols-2 gap-8">
+          {whyReasons.map((reason, idx) => (
+            <Card key={idx} reason={reason} index={idx} />
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}

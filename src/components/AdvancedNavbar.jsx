@@ -8,7 +8,7 @@ export const AdvancedNavbar = ({ scrollToSection }) => {
   const navBackground = useTransform(
     scrollYProgress,
     [0, 1],
-    ["rgba(30, 58, 138, 0)", "rgba(30, 58, 138, 0.95)"]
+    ["rgba(30, 58, 138, 0)", "rgba(30, 58, 138, 0)"]
   );
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);

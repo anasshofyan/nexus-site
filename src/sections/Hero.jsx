@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
 import TechGrid from "../components/TechGrid";
 
 // AnimatedSection Component
@@ -120,6 +121,16 @@ export const Hero = ({ scrollToSection, containerVariants, itemVariants }) => {
     },
   ];
 
+  // Fallback scrollToSection agar tidak error jika tidak diberikan
+  const safeScrollToSection =
+    typeof scrollToSection === "function"
+      ? scrollToSection
+      : (id) => {
+          console.warn(
+            "[Hero] scrollToSection prop is not provided or not a function."
+          );
+        };
+
   return (
     <AnimatedSection id="hero" containerVariants={containerVariants}>
       <div className="relative min-h-screen flex items-center justify-center pt-20 px-4 overflow-hidden bg-gradient-to-br from-brand-800 via-tech-green-900 to-brand-800">
@@ -179,13 +190,18 @@ export const Hero = ({ scrollToSection, containerVariants, itemVariants }) => {
           {/* Tech Cards with 3D Effect */}
           <TechGrid techItems={techItems} />
           {/* CTA Button with Advanced Effects */}
-          <div className="relative inline-block group">
+
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.8 }}
+            className="relative inline-block group">
             {/* Button Glow Ring */}
             <div className="absolute -inset-2 bg-gradient-to-r from-emerald-400 via-cyan-400 to-brand-400 rounded-full blur-lg opacity-50 group-hover:opacity-100 transition duration-500 animate-pulse" />
 
             {/* Main Button */}
             <button
-              onClick={() => scrollToSection("why")}
+              onClick={() => safeScrollToSection("why")}
               className="relative bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-400 hover:to-emerald-500 px-10 py-5 rounded-full font-bold text-lg shadow-2xl transition-all duration-300 transform hover:scale-110 group">
               <span className="relative z-10 flex items-center gap-3">
                 Discover More
@@ -206,7 +222,7 @@ export const Hero = ({ scrollToSection, containerVariants, itemVariants }) => {
               {/* Ripple Effect */}
               <span className="absolute inset-0 rounded-full opacity-0 group-hover:animate-ping bg-emerald-400/50" />
             </button>
-          </div>
+          </motion.div>
         </div>
 
         <style>{`
