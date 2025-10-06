@@ -94,11 +94,11 @@ export const AdvancedNavbar = ({ scrollToSection }) => {
                   {/* Logo */}
                   <div className="relative flex items-center space-x-3 transform group-hover:scale-105 transition-transform duration-300">
                     {/* Icon Placeholder - ganti dengan logo Anda */}
-                    <div className="hidden sm:block">
+                    <div className="block">
                       <img
                         src="/brand-logo/nexus-teh-white.svg"
                         alt="Nexus Logo"
-                        className="w-44 h-44"
+                        className="w-32 h-w-32 sm:w-44 sm:h-44"
                       />
                     </div>
                   </div>

@@ -2,7 +2,7 @@ import { useState } from "react";
 import { ChevronRight, MapPin, Mail, Phone, Calendar } from "lucide-react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { TechParticleField } from "./TechParticleField";
-import { Hero } from "../sections/Hero";
+import { Hero } from "../sections/HeroSection";
 import { AnimatedSection } from "../sections/AnimatedSection";
 import { AdvancedNavbar } from "./AdvancedNavbar";
 import { AdvancedFooter } from "./AdvancedFooter";

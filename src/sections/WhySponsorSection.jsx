@@ -110,7 +110,7 @@ const Card = ({ reason, index }) => {
   );
 };
 
-export default function WhySponsor() {
+export default function WhySponsorSection() {
   const containerRef = useRef(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,

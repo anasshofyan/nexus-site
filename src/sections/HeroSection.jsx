@@ -68,7 +68,11 @@ const GlowingOrb = ({ delay = 0 }) => {
   );
 };
 
-export const Hero = ({ scrollToSection, containerVariants, itemVariants }) => {
+export const HeroSection = ({
+  scrollToSection,
+  containerVariants,
+  itemVariants,
+}) => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [isHovered, setIsHovered] = useState(false);
   const [typedText, setTypedText] = useState("");
