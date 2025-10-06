@@ -79,8 +79,12 @@ export const TiltCard = ({ item }) => {
         transition={{ type: "spring", stiffness: 220, damping: 18 }}
         className="relative bg-gray-900/90 backdrop-blur-xl border border-emerald-400/20 rounded-2xl p-6 hover:border-emerald-400/60 will-change-transform">
         {/* Icon */}
-        <div className="text-6xl mb-4 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300">
-          {item.icon}
+        <div className="text-6xl mb-4 text-center group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300">
+          <img
+            src={item.icon}
+            alt={item.text}
+            className="w-40 h-w-40 object-contain mx-auto"
+          />
         </div>
 
         {/* Text */}

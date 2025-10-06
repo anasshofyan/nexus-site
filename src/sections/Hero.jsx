@@ -101,22 +101,22 @@ export const Hero = ({ scrollToSection, containerVariants, itemVariants }) => {
 
   const techItems = [
     {
-      icon: "🤖",
+      icon: "/icons/ai.png",
       text: "Artificial Intelligence",
       color: "emerald",
-      gradient: "from-emerald-400 to-green-600",
+      gradient: "from-brand-400 to-tech-green-600",
     },
     {
-      icon: "🔐",
+      icon: "/icons/cyber.png",
       text: "Cybersecurity",
       color: "cyan",
-      gradient: "from-cyan-400 to-brand-600",
+      gradient: "from-brand-400 to-tech-green-300",
     },
     {
-      icon: "💼",
+      icon: "/icons/tech.png",
       text: "Enterprise Tech",
       color: "blue",
-      gradient: "from-brand-400 to-indigo-600",
+      gradient: "from-tech-green-400 to-indigo-600",
     },
   ];
 
