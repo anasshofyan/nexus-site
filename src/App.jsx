@@ -1,7 +1,7 @@
-import NexusWebsite from "./components/NexusWebsite";
+import { HomePage } from "./pages/HomePage";
 
 function App() {
-  return <NexusWebsite />;
+  return <HomePage />;
 }
 
 export default App;
