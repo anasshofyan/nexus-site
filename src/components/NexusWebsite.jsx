@@ -29,29 +29,6 @@ const NexusWebsite = () => {
     }
   };
 
-  const whyReasons = [
-    {
-      icon: "🎯",
-      title: "Targeted Audience",
-      desc: "Gain direct access to 200 Chief, Director, Head, and Lead-level prospects in every city.",
-    },
-    {
-      icon: "📊",
-      title: "Maximized ROI",
-      desc: "Move beyond brand awareness to generate qualified leads, close deals, and build relationships in a high-intensity environment.",
-    },
-    {
-      icon: "🌏",
-      title: "Regional Dominance",
-      desc: "Build your brand presence across multiple key APAC markets in a single, coordinated campaign.",
-    },
-    {
-      icon: "✅",
-      title: "Quality Over Quantity",
-      desc: "Our curated matchmaking ensures your time is spent with the right people who have real budget and authority.",
-    },
-  ];
-
   const packages = [
     {
       name: "PLATINUM",

@@ -122,7 +122,7 @@ export const Hero = ({ scrollToSection, containerVariants, itemVariants }) => {
 
   return (
     <AnimatedSection id="hero" containerVariants={containerVariants}>
-      <div className="relative min-h-screen flex items-center justify-center pt-20 px-4 overflow-hidden bg-gradient-to-br from-gray-900 via-emerald-950 to-gray-900">
+      <div className="relative min-h-screen flex items-center justify-center pt-20 px-4 overflow-hidden bg-gradient-to-br from-brand-800 via-tech-green-900 to-brand-800">
         {/* Animated Background Elements */}
         <GridBackground />
         <FloatingParticles />
@@ -222,9 +222,72 @@ export const Hero = ({ scrollToSection, containerVariants, itemVariants }) => {
             100% { transform: translate(50px, 50px); }
           }
 
+          @keyframes spin-slow {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+          }
+
+          @keyframes spin-reverse {
+            from { transform: rotate(360deg); }
+            to { transform: rotate(0deg); }
+          }
+
+          @keyframes orbit {
+            from { transform: rotate(0deg) translateX(100px) rotate(0deg); }
+            to { transform: rotate(360deg) translateX(100px) rotate(-360deg); }
+          }
+
           @keyframes blink {
             0%, 100% { opacity: 1; }
             50% { opacity: 0; }
+          }
+
+          @keyframes slideUp {
+            from {
+              opacity: 0;
+              transform: translateY(30px);
+            }
+            to {
+              opacity: 1;
+              transform: translateY(0);
+            }
+          }
+
+          @keyframes particle {
+            0% {
+              transform: translateY(0) scale(1);
+              opacity: 1;
+            }
+            100% {
+              transform: translateY(-50px) scale(0);
+              opacity: 0;
+            }
+          }
+
+          @keyframes scroll {
+            0% { opacity: 0; transform: translateY(0); }
+            50% { opacity: 1; }
+            100% { opacity: 0; transform: translateY(20px); }
+          }
+
+          .animate-spin-slow {
+            animation: spin-slow 8s linear infinite;
+          }
+
+          .animate-spin-reverse {
+            animation: spin-reverse 6s linear infinite;
+          }
+
+          .animate-blink {
+            animation: blink 1s step-end infinite;
+          }
+
+          .animate-particle {
+            animation: particle 2s ease-out infinite;
+          }
+
+          .animate-scroll {
+            animation: scroll 2s ease-in-out infinite;
           }
         `}</style>
       </div>
