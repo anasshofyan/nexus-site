@@ -5,6 +5,10 @@ import { useState } from "react";
 import { HeroSection } from "../sections/HeroSection";
 import WhySponsorSection from "../sections/WhySponsorSection";
 import AudienceSection from "../sections/AudienceSection";
+import EventFormatSection from "../sections/EventFotmatSection";
+import PackagesSection from "../sections/PackagesSection";
+import ToursSection from "../sections/ToursSection";
+import ContactSection from "../sections/ContactSections";
 
 export const HomePage = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -26,6 +30,10 @@ export const HomePage = () => {
       <HeroSection scrollToSection={scrollToSection} />
       <WhySponsorSection />
       <AudienceSection />
+      <EventFormatSection />
+      <PackagesSection />
+      <ToursSection />
+      <ContactSection />
     </main>
   );
 };
