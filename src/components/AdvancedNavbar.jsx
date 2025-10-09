@@ -21,7 +21,7 @@ export const AdvancedNavbar = ({ scrollToSection }) => {
     { name: "Audience", id: "audience" },
     { name: "Format", id: "format" },
     { name: "Packages", id: "packages" },
-    { name: "Tour", id: "tour" },
+    { name: "Tour", id: "tours" },
     { name: "Contact", id: "contact" },
   ];
 

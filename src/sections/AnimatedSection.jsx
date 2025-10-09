@@ -15,12 +15,12 @@ export const AnimatedSection = ({ children, id }) => {
 
   return (
     <motion.section
-      ref={ref}
+      animate={isInView ? "visible" : "hidden"}
+      className="relative z-10"
       id={id}
       initial="hidden"
-      animate={isInView ? "visible" : "hidden"}
-      variants={containerVariants}
-      className="relative z-10">
+      ref={ref}
+      variants={containerVariants}>
       {children}
     </motion.section>
   );

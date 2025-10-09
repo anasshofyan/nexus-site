@@ -132,7 +132,7 @@ const ThreeFooterBackground = () => {
   }, []);
 
   return (
-    <div ref={mountRef} className="absolute inset-0 pointer-events-none" />
+    <div className="absolute inset-0 pointer-events-none" ref={mountRef} />
   );
 };
 
@@ -140,11 +140,11 @@ const ThreeFooterBackground = () => {
 const SocialLink = ({ icon, href, label }) => {
   return (
     <a
-      href={href}
-      target="_blank"
-      rel="noopener noreferrer"
+      aria-label={label}
       className="group relative w-12 h-12 flex items-center justify-center rounded-xl bg-gray-800/50 border border-emerald-400/20 hover:border-emerald-400 transition-all duration-500 hover:scale-110"
-      aria-label={label}>
+      href={href}
+      rel="noopener noreferrer"
+      target="_blank">
       <div className="absolute inset-0 bg-gradient-to-r from-emerald-400/0 via-emerald-400/20 to-emerald-400/0 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur" />
       <span className="relative text-2xl transform group-hover:scale-110 group-hover:rotate-12 transition-all duration-500">
         {icon}
@@ -184,17 +184,17 @@ const NewsletterForm = () => {
 
         <div className="relative flex">
           <input
-            type="email"
-            value={email}
+            className="flex-1 px-6 py-3 bg-gray-800/80 border border-emerald-400/30 rounded-l-full text-gray-100 placeholder-gray-500 focus:outline-none focus:border-emerald-400 transition-colors duration-300"
+            onBlur={() => setFocused(false)}
             onChange={(e) => setEmail(e.target.value)}
             onFocus={() => setFocused(true)}
-            onBlur={() => setFocused(false)}
             placeholder="Enter your email"
-            className="flex-1 px-6 py-3 bg-gray-800/80 border border-emerald-400/30 rounded-l-full text-gray-100 placeholder-gray-500 focus:outline-none focus:border-emerald-400 transition-colors duration-300"
+            type="email"
+            value={email}
           />
           <button
-            onClick={handleSubmit}
-            className="px-6 py-3 bg-gradient-to-r from-emerald-500 to-cyan-500 hover:from-emerald-400 hover:to-cyan-400 rounded-r-full font-semibold text-gray-900 transition-all duration-300 hover:scale-105 flex items-center gap-2">
+            className="px-6 py-3 bg-gradient-to-r from-emerald-500 to-cyan-500 hover:from-emerald-400 hover:to-cyan-400 rounded-r-full font-semibold text-gray-900 transition-all duration-300 hover:scale-105 flex items-center gap-2"
+            onClick={handleSubmit}>
             Subscribe
             <svg
               className="w-4 h-4"
@@ -202,10 +202,10 @@ const NewsletterForm = () => {
               stroke="currentColor"
               viewBox="0 0 24 24">
               <path
+                d="M13 7l5 5m0 0l-5 5m5-5H6"
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 strokeWidth={2}
-                d="M13 7l5 5m0 0l-5 5m5-5H6"
               />
             </svg>
           </button>
@@ -219,8 +219,8 @@ const NewsletterForm = () => {
 const FooterLink = ({ href, children }) => {
   return (
     <a
-      href={href}
-      className="group relative inline-block text-gray-400 hover:text-emerald-400 transition-colors duration-300">
+      className="group relative inline-block text-gray-400 hover:text-emerald-400 transition-colors duration-300"
+      href={href}>
       <span className="relative">
         {children}
         <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-emerald-400 to-cyan-400 group-hover:w-full transition-all duration-500" />
@@ -384,19 +384,19 @@ export const FooterSection = () => {
 
           {/* Scroll to Top Button */}
           <button
-            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+            aria-label="Scroll to top"
             className="fixed bottom-8 right-8 group w-12 h-12 bg-gradient-to-r from-emerald-500 to-cyan-500 rounded-full flex items-center justify-center shadow-lg hover:shadow-emerald-500/50 transition-all duration-300 hover:scale-110 z-50"
-            aria-label="Scroll to top">
+            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>
             <svg
               className="w-6 h-6 text-gray-900 transform group-hover:-translate-y-1 transition-transform duration-300"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24">
               <path
+                d="M5 10l7-7m0 0l7 7m-7-7v18"
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 strokeWidth={2}
-                d="M5 10l7-7m0 0l7 7m-7-7v18"
               />
             </svg>
 

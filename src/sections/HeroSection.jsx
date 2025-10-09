@@ -125,7 +125,7 @@ export const HeroSection = ({ scrollToSection, containerVariants }) => {
   // Fallback scrollToSection agar tidak error jika tidak diberikan
   const safeScrollToSection =
     typeof scrollToSection === "function" ? scrollToSection : (
-      (id) => {
+      () => {
         console.warn(
           "[Hero] scrollToSection prop is not provided or not a function."
         );
