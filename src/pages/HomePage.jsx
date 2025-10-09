@@ -33,10 +33,10 @@ export const HomePage = () => {
       <WhySponsorSection />
       <AudienceSection />
       <EventFormatSection />
-      <PackagesSection />
+      {/* <PackagesSection />
       <ToursSection />
       <ContactSection />
-      <FooterSection />
+      <FooterSection /> */}
     </main>
   );
 };
