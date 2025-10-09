@@ -1,7 +1,8 @@
-import { useScroll } from "framer-motion";
+/* eslint-disable no-undef */
+import { useState } from "react";
+
 import { TechParticleField } from "../components/TechParticleField";
 import { AdvancedNavbar } from "../components/AdvancedNavbar";
-import { useState } from "react";
 import { HeroSection } from "../sections/HeroSection";
 import WhySponsorSection from "../sections/WhySponsorSection";
 import AudienceSection from "../sections/AudienceSection";
@@ -11,7 +12,7 @@ import ToursSection from "../sections/ToursSection";
 import ContactSection from "../sections/ContactSections";
 
 export const HomePage = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [, setIsMenuOpen] = useState(false);
 
   const scrollToSection = (id) => {
     const element = document.getElementById(id);

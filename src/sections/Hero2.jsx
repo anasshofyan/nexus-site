@@ -1,9 +1,10 @@
+/* eslint-disable no-undef */
 import { useState, useEffect } from "react";
 
 // AnimatedSection Component
 const AnimatedSection = ({ id, children }) => {
   return (
-    <section id={id} className="relative">
+    <section className="relative" id={id}>
       {children}
     </section>
   );
@@ -16,8 +17,8 @@ const TechParticles = () => {
       {/* Binary Code Rain */}
       {[...Array(15)].map((_, i) => (
         <div
-          key={`binary-${i}`}
           className="absolute text-emerald-400/20 font-mono text-xs animate-binary-fall"
+          key={`binary-${i}`}
           style={{
             left: `${Math.random() * 100}%`,
             animationDelay: `${Math.random() * 5}s`,
@@ -32,14 +33,14 @@ const TechParticles = () => {
         {[...Array(8)].map((_, i) => (
           <g key={`circuit-${i}`}>
             <line
-              x1={Math.random() * 100 + "%"}
-              y1={Math.random() * 100 + "%"}
-              x2={Math.random() * 100 + "%"}
-              y2={Math.random() * 100 + "%"}
+              className="animate-pulse"
               stroke="rgb(16, 185, 129)"
               strokeWidth="1"
-              className="animate-pulse"
               style={{ animationDelay: `${i * 0.5}s` }}
+              x1={Math.random() * 100 + "%"}
+              x2={Math.random() * 100 + "%"}
+              y1={Math.random() * 100 + "%"}
+              y2={Math.random() * 100 + "%"}
             />
           </g>
         ))}
@@ -68,8 +69,8 @@ const TechParticles = () => {
       {/* Network Nodes */}
       {[...Array(20)].map((_, i) => (
         <div
-          key={`node-${i}`}
           className="absolute w-2 h-2 bg-emerald-400 rounded-full animate-pulse-glow"
+          key={`node-${i}`}
           style={{
             left: `${Math.random() * 100}%`,
             top: `${Math.random() * 100}%`,
@@ -146,8 +147,8 @@ const AnimatedGlobe = ({ type = "ai" }) => {
       {/* Orbiting Particles */}
       {[0, 90, 180, 270].map((angle, i) => (
         <div
-          key={i}
           className={`absolute top-1/2 left-1/2 w-2 h-2 bg-${theme.color}-400 rounded-full`}
+          key={i}
           style={{
             animation: `orbit-globe 4s linear infinite`,
             animationDelay: `${i * 0.25}s`,
@@ -317,9 +318,9 @@ export const Hero = ({ scrollToSection }) => {
                   }`}>
                   <div className="text-8xl font-bold bg-gradient-to-r from-emerald-400 via-cyan-400 to-blue-400 bg-clip-text text-transparent">
                     <img
-                      src="/brand-logo/nexus-green.svg"
                       alt="Nexus Logo"
                       className="w-40 h-40 mx-auto"
+                      src="/brand-logo/nexus-green.svg"
                     />
                   </div>
                 </div>
@@ -327,8 +328,8 @@ export const Hero = ({ scrollToSection }) => {
                 {/* Orbiting Dots */}
                 {[0, 120, 240].map((angle, i) => (
                   <div
-                    key={i}
                     className="absolute top-1/2 left-1/2 w-3 h-3 bg-emerald-400 rounded-full"
+                    key={i}
                     style={{
                       animation: `orbit 3s linear infinite`,
                       animationDelay: `${i * 1}s`,
@@ -352,8 +353,8 @@ export const Hero = ({ scrollToSection }) => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12 px-4">
             {techItems.map((item, idx) => (
               <div
-                key={idx}
                 className="group relative"
+                key={idx}
                 style={{
                   animationDelay: `${idx * 0.2}s`,
                   animation: "slideUp 0.6s ease-out forwards",
@@ -386,8 +387,8 @@ export const Hero = ({ scrollToSection }) => {
                   <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 overflow-hidden rounded-2xl">
                     {[...Array(3)].map((_, i) => (
                       <div
-                        key={i}
                         className="absolute h-px w-full bg-gradient-to-r from-transparent via-emerald-400 to-transparent animate-data-stream"
+                        key={i}
                         style={{
                           top: `${20 + i * 30}%`,
                           animationDelay: `${i * 0.2}s`,
@@ -407,8 +408,8 @@ export const Hero = ({ scrollToSection }) => {
 
             {/* Main Button */}
             <button
-              onClick={() => scrollToSection("why")}
-              className="relative bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-400 hover:to-emerald-500 px-10 py-5 rounded-full font-bold text-lg shadow-2xl transition-all duration-300 transform hover:scale-110 group">
+              className="relative bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-400 hover:to-emerald-500 px-10 py-5 rounded-full font-bold text-lg shadow-2xl transition-all duration-300 transform hover:scale-110 group"
+              onClick={() => scrollToSection("why")}>
               <span className="relative z-10 flex items-center gap-3">
                 Discover More
                 <svg
@@ -417,10 +418,10 @@ export const Hero = ({ scrollToSection }) => {
                   stroke="currentColor"
                   viewBox="0 0 24 24">
                   <path
+                    d="M13 7l5 5m0 0l-5 5m5-5H6"
                     strokeLinecap="round"
                     strokeLinejoin="round"
                     strokeWidth={2}
-                    d="M13 7l5 5m0 0l-5 5m5-5H6"
                   />
                 </svg>
               </span>

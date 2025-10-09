@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import { motion, useScroll, useTransform, useInView } from "framer-motion";
 import { useRef, useState } from "react";
 import {
@@ -116,9 +117,9 @@ const ContactCard = ({ contact, index }) => {
       style={{ y, opacity, scale, rotate }}
       initial={{ opacity: 0, y: 100, rotateX: 20 }}
       animate={
-        isInView
-          ? { opacity: 1, y: 0, rotateX: 0 }
-          : { opacity: 0, y: 100, rotateX: 20 }
+        isInView ?
+          { opacity: 1, y: 0, rotateX: 0 }
+        : { opacity: 0, y: 100, rotateX: 20 }
       }
       transition={{
         duration: 0.7,
@@ -154,20 +155,19 @@ const ContactCard = ({ contact, index }) => {
               />
               <div
                 className={`relative w-20 h-20 rounded-2xl bg-gradient-to-br ${contact.gradient} p-0.5 shadow-2xl`}>
-                {!imageError ? (
+                {!imageError ?
                   <img
                     src={contact.avatar}
                     alt={contact.name}
                     className="w-full h-full rounded-2xl bg-slate-800 object-cover"
                     onError={() => setImageError(true)}
                   />
-                ) : (
-                  <div className="w-full h-full rounded-2xl bg-slate-800 flex items-center justify-center">
+                : <div className="w-full h-full rounded-2xl bg-slate-800 flex items-center justify-center">
                     <span className="text-2xl font-bold text-white">
                       {contact.initials}
                     </span>
                   </div>
-                )}
+                }
               </div>
 
               {/* Online Status Indicator */}
@@ -225,11 +225,9 @@ const ContactCard = ({ contact, index }) => {
                 whileTap={{ scale: 0.9 }}
                 onClick={() => handleCopy(contact.email, `email-${index}`)}
                 className="opacity-0 group-hover/item:opacity-100 transition-opacity p-1.5 hover:bg-white/10 rounded-lg">
-                {copiedField === `email-${index}` ? (
+                {copiedField === `email-${index}` ?
                   <Check className="w-4 h-4 text-emerald-400" />
-                ) : (
-                  <Copy className="w-4 h-4 text-gray-400" />
-                )}
+                : <Copy className="w-4 h-4 text-gray-400" />}
               </motion.button>
             </motion.div>
 
@@ -248,11 +246,9 @@ const ContactCard = ({ contact, index }) => {
                 whileTap={{ scale: 0.9 }}
                 onClick={() => handleCopy(contact.phone, `phone-${index}`)}
                 className="opacity-0 group-hover/item:opacity-100 transition-opacity p-1.5 hover:bg-white/10 rounded-lg">
-                {copiedField === `phone-${index}` ? (
+                {copiedField === `phone-${index}` ?
                   <Check className="w-4 h-4 text-emerald-400" />
-                ) : (
-                  <Copy className="w-4 h-4 text-gray-400" />
-                )}
+                : <Copy className="w-4 h-4 text-gray-400" />}
               </motion.button>
             </motion.div>
           </div>

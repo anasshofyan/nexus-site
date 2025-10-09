@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import { useState, useEffect } from "react";
 import { useScroll, useTransform, motion } from "framer-motion";
 import { Menu, X, ChevronDown } from "lucide-react";
@@ -74,9 +75,9 @@ export const AdvancedNavbar = ({ scrollToSection }) => {
       <motion.nav
         style={{ backgroundColor: navBackground }}
         className={`fixed w-full z-50 backdrop-blur-xl border-b transition-all duration-500 ${
-          scrolled
-            ? "border-emerald-400/20 shadow-lg shadow-emerald-500/10"
-            : "border-transparent"
+          scrolled ?
+            "border-emerald-400/20 shadow-lg shadow-emerald-500/10"
+          : "border-transparent"
         }`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
@@ -117,9 +118,9 @@ export const AdvancedNavbar = ({ scrollToSection }) => {
                   <button
                     onClick={() => handleNavClick(item.id)}
                     className={`group relative px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 ${
-                      activeSection === item.id
-                        ? "text-emerald-400"
-                        : "text-gray-300 hover:text-white"
+                      activeSection === item.id ?
+                        "text-emerald-400"
+                      : "text-gray-300 hover:text-white"
                     }`}
                     style={{
                       animationDelay: `${idx * 0.1}s`,
@@ -197,11 +198,10 @@ export const AdvancedNavbar = ({ scrollToSection }) => {
               className="lg:hidden relative w-10 h-10 flex items-center justify-center rounded-lg border border-emerald-400/30 hover:border-emerald-400 hover:bg-emerald-400/10 transition-all group"
               onClick={() => setIsMenuOpen(!isMenuOpen)}>
               <div className="relative w-6 h-6">
-                {isMenuOpen ? (
+                {isMenuOpen ?
                   <X className="w-6 h-6 text-emerald-400 transform rotate-90 transition-transform duration-300" />
-                ) : (
-                  <Menu className="w-6 h-6 text-emerald-400 transform group-hover:scale-110 transition-transform duration-300" />
-                )}
+                : <Menu className="w-6 h-6 text-emerald-400 transform group-hover:scale-110 transition-transform duration-300" />
+                }
               </div>
 
               {/* Ping Effect */}
@@ -224,14 +224,15 @@ export const AdvancedNavbar = ({ scrollToSection }) => {
                   key={item.id}
                   onClick={() => handleNavClick(item.id)}
                   className={`group w-full flex items-center justify-between px-4 py-3 rounded-lg transition-all duration-300 ${
-                    activeSection === item.id
-                      ? "bg-gradient-to-r from-emerald-500/20 to-cyan-500/20 border border-emerald-400/30"
-                      : "hover:bg-gray-800 border border-transparent"
+                    activeSection === item.id ?
+                      "bg-gradient-to-r from-emerald-500/20 to-cyan-500/20 border border-emerald-400/30"
+                    : "hover:bg-gray-800 border border-transparent"
                   }`}
                   style={{
                     animationDelay: `${idx * 0.05}s`,
-                    animation: isMenuOpen
-                      ? "slideInRight 0.3s ease-out forwards"
+                    animation:
+                      isMenuOpen ?
+                        "slideInRight 0.3s ease-out forwards"
                       : "none",
                   }}>
                   <span className="flex items-center gap-3">
@@ -240,9 +241,9 @@ export const AdvancedNavbar = ({ scrollToSection }) => {
                     </span>
                     <span
                       className={`font-medium ${
-                        activeSection === item.id
-                          ? "text-emerald-400"
-                          : "text-gray-300"
+                        activeSection === item.id ?
+                          "text-emerald-400"
+                        : "text-gray-300"
                       }`}>
                       {item.name}
                     </span>
@@ -250,9 +251,9 @@ export const AdvancedNavbar = ({ scrollToSection }) => {
 
                   <ChevronDown
                     className={`w-5 h-5 text-gray-500 transform transition-transform ${
-                      activeSection === item.id
-                        ? "rotate-180 text-emerald-400"
-                        : ""
+                      activeSection === item.id ?
+                        "rotate-180 text-emerald-400"
+                      : ""
                     }`}
                   />
                 </button>
