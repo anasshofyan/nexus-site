@@ -14,15 +14,15 @@ export const AdvancedNavbar = ({ scrollToSection }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState("hero");
-  const [hoveredItem, setHoveredItem] = useState(null);
+  const [, setHoveredItem] = useState(null);
 
   const navItems = [
-    { name: "Why", id: "why", icon: "💡" },
-    { name: "Audience", id: "audience", icon: "👥" },
-    { name: "Format", id: "format", icon: "📋" },
-    { name: "Packages", id: "packages", icon: "📦" },
-    { name: "Tour", id: "tour", icon: "🗺️" },
-    { name: "Contact", id: "contact", icon: "📧" },
+    { name: "Why", id: "why" },
+    { name: "Audience", id: "audience" },
+    { name: "Format", id: "format" },
+    { name: "Packages", id: "packages" },
+    { name: "Tour", id: "tour" },
+    { name: "Contact", id: "contact" },
   ];
 
   useEffect(() => {
@@ -139,23 +139,12 @@ export const AdvancedNavbar = ({ scrollToSection }) => {
 
                     {/* Text with Icon */}
                     <span className="relative flex items-center gap-2">
-                      <span className="text-lg transform group-hover:scale-110 transition-transform">
-                        {item.icon}
-                      </span>
                       {item.name}
                     </span>
 
                     {/* Hover Glow */}
                     <div className="absolute inset-0 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-md bg-emerald-400/20" />
                   </button>
-
-                  {/* Tooltip on Hover */}
-                  {hoveredItem === item.id && (
-                    <div className="absolute top-full mt-2 left-1/2 transform -translate-x-1/2 px-3 py-1 bg-gray-900 border border-emerald-400/30 rounded-lg text-xs text-emerald-400 whitespace-nowrap animate-fadeIn">
-                      View {item.name}
-                      <div className="absolute -top-1 left-1/2 transform -translate-x-1/2 w-2 h-2 bg-gray-900 border-l border-t border-emerald-400/30 rotate-45" />
-                    </div>
-                  )}
                 </div>
               ))}
             </div>
