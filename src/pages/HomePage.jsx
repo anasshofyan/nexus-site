@@ -10,6 +10,7 @@ import EventFormatSection from "../sections/EventFotmatSection";
 import PackagesSection from "../sections/PackagesSection";
 import ToursSection from "../sections/ToursSection";
 import ContactSection from "../sections/ContactSections";
+import { FooterSection } from "../sections/FooterSection";
 
 export const HomePage = () => {
   const [, setIsMenuOpen] = useState(false);
@@ -35,6 +36,7 @@ export const HomePage = () => {
       <PackagesSection />
       <ToursSection />
       <ContactSection />
+      <FooterSection />
     </main>
   );
 };

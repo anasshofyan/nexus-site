@@ -2,7 +2,6 @@
 import { useState, useEffect, useRef } from "react";
 import * as THREE from "three";
 
-// Three.js Footer Background
 const ThreeFooterBackground = () => {
   const mountRef = useRef(null);
 
@@ -72,7 +71,7 @@ const ThreeFooterBackground = () => {
     const gridSize = 20;
     const gridGeometry = new THREE.PlaneGeometry(10, 10, gridSize, gridSize);
     const gridMaterial = new THREE.MeshBasicMaterial({
-      color: 0x10b981,
+      color: "var(--color-green-tech-500)",
       wireframe: true,
       transparent: true,
       opacity: 0.15,
@@ -230,7 +229,7 @@ const FooterLink = ({ href, children }) => {
   );
 };
 
-export const AdvancedFooter = () => {
+export const FooterSection = () => {
   const [currentYear] = useState(new Date().getFullYear());
 
   const footerSections = [
