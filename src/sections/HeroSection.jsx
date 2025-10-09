@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import TechGrid from "../components/TechGrid";
+import { TiltCard } from "../components/TiltCard";
 
 // AnimatedSection Component
 const AnimatedSection = ({ id, children, containerVariants }) => {
@@ -191,10 +192,15 @@ export const HeroSection = ({
               <span className="animate-blink ml-1 text-emerald-400">|</span>
             </span>
           </h2>
-          {/* Tech Cards with 3D Effect */}
-          <TechGrid techItems={techItems} />
-          {/* CTA Button with Advanced Effects */}
 
+          {/* Tech Cards with 3D Effect */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12 px-4">
+            {techItems.map((item, idx) => (
+              <TiltCard key={idx} item={item} />
+            ))}
+          </div>
+
+          {/* CTA Button with Advanced Effects */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
