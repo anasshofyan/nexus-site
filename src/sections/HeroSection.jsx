@@ -1,12 +1,13 @@
+/* eslint-disable no-undef */
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import TechGrid from "../components/TechGrid";
+
 import { TiltCard } from "../components/TiltCard";
 
 // AnimatedSection Component
-const AnimatedSection = ({ id, children, containerVariants }) => {
+const AnimatedSection = ({ id, children }) => {
   return (
-    <section id={id} className="relative">
+    <section className="relative" id={id}>
       {children}
     </section>
   );
@@ -20,8 +21,8 @@ const FloatingParticles = () => {
     <div className="absolute inset-0 overflow-hidden pointer-events-none">
       {particles.map((_, i) => (
         <div
-          key={i}
           className="absolute w-1 h-1 bg-emerald-400 rounded-full animate-float"
+          key={i}
           style={{
             left: `${Math.random() * 100}%`,
             top: `${Math.random() * 100}%`,
@@ -69,13 +70,8 @@ const GlowingOrb = ({ delay = 0 }) => {
   );
 };
 
-export const HeroSection = ({
-  scrollToSection,
-  containerVariants,
-  itemVariants,
-}) => {
+export const HeroSection = ({ scrollToSection, containerVariants }) => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-  const [isHovered, setIsHovered] = useState(false);
   const [typedText, setTypedText] = useState("");
   const fullText = "Connecting Innovation Across the Asia-Pacific";
 
@@ -128,16 +124,16 @@ export const HeroSection = ({
 
   // Fallback scrollToSection agar tidak error jika tidak diberikan
   const safeScrollToSection =
-    typeof scrollToSection === "function"
-      ? scrollToSection
-      : (id) => {
-          console.warn(
-            "[Hero] scrollToSection prop is not provided or not a function."
-          );
-        };
+    typeof scrollToSection === "function" ? scrollToSection : (
+      (id) => {
+        console.warn(
+          "[Hero] scrollToSection prop is not provided or not a function."
+        );
+      }
+    );
 
   return (
-    <AnimatedSection id="hero" containerVariants={containerVariants}>
+    <AnimatedSection containerVariants={containerVariants} id="hero">
       <div className="relative min-h-screen flex items-center justify-center pt-20 px-4 overflow-hidden bg-gradient-to-br from-brand-800 via-tech-green-900 to-brand-800">
         {/* Animated Background Elements */}
         <GridBackground />
@@ -171,9 +167,9 @@ export const HeroSection = ({
                   <div className="relative">
                     {/* Main Logo */}
                     <img
-                      src="/brand-logo/nexus-green.svg"
                       alt="Nexus Logo"
                       className="w-[22rem] h-[22rem] md:w-[28rem] md:h-[28rem] lg:w-[32rem] lg:h-[32rem] mx-auto relative z-10 drop-shadow-[0_0_30px_rgba(16,185,129,0.8)]"
+                      src="/brand-logo/nexus-green.svg"
                     />
                     {/* Horizontal Light Streaks */}
                     <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[22rem] md:w-[28rem] lg:w-[50rem] mx-auto h-1 opacity-100 transition-opacity duration-500">
@@ -196,23 +192,23 @@ export const HeroSection = ({
           {/* Tech Cards with 3D Effect */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12 px-4">
             {techItems.map((item, idx) => (
-              <TiltCard key={idx} item={item} />
+              <TiltCard item={item} key={idx} />
             ))}
           </div>
 
           {/* CTA Button with Advanced Effects */}
           <motion.div
+            className="relative inline-block group"
             initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.8 }}
-            className="relative inline-block group">
+            whileInView={{ opacity: 1, y: 0 }}>
             {/* Button Glow Ring */}
             <div className="absolute -inset-2 bg-gradient-to-r from-emerald-400 via-cyan-400 to-brand-400 rounded-full blur-lg opacity-50 group-hover:opacity-100 transition duration-500 animate-pulse" />
 
             {/* Main Button */}
             <button
-              onClick={() => safeScrollToSection("why")}
-              className="relative bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-400 hover:to-emerald-500 px-10 py-5 rounded-full font-bold text-lg shadow-2xl transition-all duration-300 transform hover:scale-110 group">
+              className="relative bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-400 hover:to-emerald-500 px-10 py-5 rounded-full font-bold text-lg shadow-2xl transition-all duration-300 transform hover:scale-110 group"
+              onClick={() => safeScrollToSection("why")}>
               <span className="relative z-10 flex items-center gap-3">
                 Discover More
                 <svg
@@ -221,10 +217,10 @@ export const HeroSection = ({
                   stroke="currentColor"
                   viewBox="0 0 24 24">
                   <path
+                    d="M13 7l5 5m0 0l-5 5m5-5H6"
                     strokeLinecap="round"
                     strokeLinejoin="round"
                     strokeWidth={2}
-                    d="M13 7l5 5m0 0l-5 5m5-5H6"
                   />
                 </svg>
               </span>

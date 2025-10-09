@@ -1,34 +1,69 @@
 import js from "@eslint/js";
-import globals from "globals";
+import react from "eslint-plugin-react";
 import reactHooks from "eslint-plugin-react-hooks";
-import reactRefresh from "eslint-plugin-react-refresh";
-import { defineConfig, globalIgnores } from "eslint/config";
+import importPlugin from "eslint-plugin-import";
+import prettier from "eslint-plugin-prettier";
 
-export default defineConfig([
-  globalIgnores(["dist"]),
+export default [
+  js.configs.recommended,
+
   {
     files: ["**/*.{js,jsx}"],
-    extends: [
-      js.configs.recommended,
-      reactHooks.configs["recommended-latest"],
-      reactRefresh.configs.vite,
-    ],
-    languageOptions: {
-      ecmaVersion: 2020,
-      globals: globals.browser,
-      parserOptions: {
-        ecmaVersion: "latest",
-        ecmaFeatures: { jsx: true },
-        sourceType: "module",
-      },
+    ignores: ["dist", "build", "coverage"],
+    plugins: {
+      react,
+      "react-hooks": reactHooks,
+      import: importPlugin,
+      prettier,
     },
+    languageOptions: {
+      ecmaVersion: "latest",
+      sourceType: "module",
+      parserOptions: { ecmaFeatures: { jsx: true } },
+    },
+    settings: { react: { version: "18" } },
     rules: {
-      rules: {
-        "no-unused-vars": [
-          "error",
-          { vars: "all", args: "after-used", ignoreRestSiblings: true },
-        ],
-      },
+      "linebreak-style": 0,
+      "max-len": ["warn", { code: 300 }],
+      "no-console": "warn",
+      "prettier/prettier": ["warn", { endOfLine: "auto" }],
+      "react/jsx-sort-props": ["warn", { ignoreCase: true }],
+      semi: "error",
+      "react/prop-types": "off",
+      "import/no-relative-packages": "error",
+      "import/order": [
+        "error",
+        {
+          groups: ["external", "builtin"],
+          pathGroupsExcludedImportTypes: ["react"],
+          "newlines-between": "always",
+          distinctGroup: false,
+        },
+      ],
+
+      // ✅ jadi WARNING, bukan error
+      "no-unused-vars": [
+        "warn",
+        { vars: "all", args: "after-used", ignoreRestSiblings: false },
+      ],
+
+      "no-var": "error",
+      "prefer-const": "error",
+      curly: ["error", "multi-line"],
+      eqeqeq: ["error", "always"],
+      "react/destructuring-assignment": ["error", "always"],
+      "react/jsx-uses-react": "off",
+      "react/jsx-uses-vars": "error",
+      "react/no-typos": "error",
+      "react/no-unused-prop-types": "error",
+      "react/no-unused-state": "error",
+      "react/no-unsafe": "error",
+      "react/self-closing-comp": "error",
+      "react/no-unescaped-entities": "error",
+      "react/jsx-key": "error",
+      "react/jsx-no-duplicate-props": "error",
+      "react-hooks/rules-of-hooks": "error",
+      "react/react-in-jsx-scope": "off",
     },
   },
-]);
+];
