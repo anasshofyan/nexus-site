@@ -247,7 +247,7 @@ export default function AudienceSection() {
           ))}
         </div>
 
-        <motion.div
+        {/* <motion.div
           className="mt-16 text-center"
           initial={{ opacity: 0, scale: 0.8 }}
           transition={{ duration: 0.8, delay: 0.6 }}
@@ -260,7 +260,7 @@ export default function AudienceSection() {
               200+
             </p>
           </div>
-        </motion.div>
+        </motion.div> */}
       </div>
     </section>
   );

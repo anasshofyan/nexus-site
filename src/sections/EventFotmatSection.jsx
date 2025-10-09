@@ -129,7 +129,7 @@ const FormatCard = ({ format, index }) => {
               className={`absolute inset-0 bg-gradient-to-br ${format.gradient} rounded-2xl blur-xl opacity-50`}
             />
 
-            <motion.div
+            {/* <motion.div
               animate={{
                 rotate: [0, 10, -10, 0],
                 scale: [1, 1.1, 1],
@@ -137,7 +137,7 @@ const FormatCard = ({ format, index }) => {
               className="absolute -bottom-2 -right-2 text-4xl"
               transition={{ duration: 2, repeat: Infinity }}>
               {format.emoji}
-            </motion.div>
+            </motion.div> */}
           </motion.div>
 
           <motion.div
@@ -267,7 +267,7 @@ export default function EventFormatSection() {
           ))}
         </div>
 
-        <motion.div
+        {/* <motion.div
           className="text-center mt-20"
           initial={{ opacity: 0, y: 30 }}
           transition={{ duration: 0.8, delay: 0.8 }}
@@ -281,7 +281,7 @@ export default function EventFormatSection() {
               </p>
             </div>
           </div>
-        </motion.div>
+        </motion.div> */}
       </div>
     </section>
   );
