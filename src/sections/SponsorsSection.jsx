@@ -1,7 +1,8 @@
 /* eslint-disable prettier/prettier */
 import { useRef, useState } from "react";
 import { motion, useScroll, useSpring, useTransform } from "framer-motion";
-import { Handshake, Sparkles } from "lucide-react";
+import { Handshake } from "lucide-react";
+
 import { PARTNERS } from "../constants";
 
 const SPEED_PARTNERS_MARQUEE = 40000;
@@ -251,12 +252,12 @@ const PartnersMarquee = ({ logos = [], speedMs = 40000 }) => {
   );
 };
 
-const LogoCard = ({ logo, isPaused }) => {
+const LogoCard = ({ logo }) => {
   const [isHovered, setIsHovered] = useState(false);
 
   return (
     <motion.div
-      className="flex items-center justify-center min-w-[160px] min-h-[80px] rounded-xl bg-blue-900/40 backdrop-blur-sm border-2 border-emerald-400/20 shadow-lg cursor-pointer overflow-hidden relative group"
+      className="flex items-center justify-center min-w-[160px] min-h-[80px] rounded-3xl bg-white/90 backdrop-blur-sm border-2 border-emerald-400/30 shadow-lg cursor-pointer overflow-hidden relative group"
       onHoverEnd={() => setIsHovered(false)}
       onHoverStart={() => setIsHovered(true)}
       transition={{ duration: 0.3 }}
@@ -269,7 +270,7 @@ const LogoCard = ({ logo, isPaused }) => {
       {/* Glow Effect */}
       <motion.div
         animate={{ opacity: isHovered ? 1 : 0 }}
-        className="absolute inset-0 bg-gradient-to-br from-emerald-400/20 to-cyan-400/20 opacity-0"
+        className="absolute inset-0 bg-gradient-to-br from-tech-green-100/10 to-brand-400/20 opacity-0"
         transition={{ duration: 0.3 }}
       />
 
@@ -301,7 +302,7 @@ const LogoCard = ({ logo, isPaused }) => {
           borderColor:
             isHovered ? "rgba(16, 185, 129, 0.6)" : "rgba(16, 185, 129, 0)",
         }}
-        className="absolute top-1 right-1 w-6 h-6 border-t-2 border-r-2 border-emerald-400/0 rounded-tr-lg"
+        className="absolute top-1 right-1 w-6 h-6 border-t-2 border-r-2 border-emerald-400/0 rounded-tr-3xl"
         transition={{ duration: 0.3 }}
       />
       <motion.div
@@ -309,7 +310,7 @@ const LogoCard = ({ logo, isPaused }) => {
           borderColor:
             isHovered ? "rgba(6, 182, 212, 0.6)" : "rgba(6, 182, 212, 0)",
         }}
-        className="absolute bottom-1 left-1 w-6 h-6 border-b-2 border-l-2 border-cyan-400/0 rounded-bl-lg"
+        className="absolute bottom-1 left-1 w-6 h-6 border-b-2 border-l-2 border-cyan-400/0 rounded-bl-3xl"
         transition={{ duration: 0.3 }}
       />
     </motion.div>
