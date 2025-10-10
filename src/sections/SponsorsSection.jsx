@@ -1,39 +1,12 @@
-/* eslint-disable no-undef */
-import Image from "next/image";
+/* eslint-disable prettier/prettier */
+/* eslint-disable no-useless-escape */
 import { useRef } from "react";
 import { motion, useScroll, useSpring, useTransform } from "framer-motion";
 import { Handshake } from "lucide-react";
 
-const SUPPORT_LOGOS = [
-  {
-    src: "/images/sponsors/sponsor-senate.svg",
-    alt: "Senate of the Philippines",
-    link: "https://www.senate.gov.ph",
-  },
-  {
-    src: "/images/sponsors/sponsor-finance.png",
-    alt: "Department of Finance",
-    link: "https://www.dof.gov.ph",
-  },
-  {
-    src: "/images/sponsors/sponsor-maharlika.svg",
-    alt: "Maharlika Investment Corporation",
-    link: "https://www.mic.gov.ph",
-  },
-];
+import { PARTNERS } from "../constants";
 
-const SPONSOR_LOGOS = [
-  {
-    src: "/images/sponsors/lmntrix.png",
-    alt: "LMNTRIX",
-    link: "https://www.lmntrix.com",
-  },
-  {
-    src: "/images/sponsors/tenable.png",
-    alt: "Tenable",
-    link: "https://www.tenable.com",
-  },
-];
+const SPEED_PARTNERS_MARQUEE = 42000;
 
 const itemVariants = {
   hidden: { opacity: 0, y: 28 },
@@ -44,12 +17,12 @@ const itemVariants = {
   },
 };
 
-export const Section = ({ sponsors = SUPPORT_LOGOS }) => {
+export default function SponsorsSection() {
   const sectionRef = useRef(null);
 
   const { scrollYProgress } = useScroll({
     target: sectionRef,
-    offset: ["start end", "end end"], // efek selesai saat section benar2 habis
+    offset: ["start end", "end end"],
   });
 
   const progress = useSpring(scrollYProgress, {
@@ -57,7 +30,6 @@ export const Section = ({ sponsors = SUPPORT_LOGOS }) => {
     damping: 20,
     mass: 0.25,
   });
-  const barW = useTransform(progress, [0, 1], ["0%", "100%"]);
   const blobOpacity = useTransform(progress, [0, 1], [0.18, 0.35]);
 
   return (
@@ -68,11 +40,11 @@ export const Section = ({ sponsors = SUPPORT_LOGOS }) => {
       {/* Background blobs */}
       <motion.div className="pointer-events-none absolute inset-0">
         <motion.div
-          className="bg-brand-300/40 absolute top-10 -left-24 h-72 w-72 rounded-full blur-3xl"
+          className="absolute top-10 -left-24 h-72 w-72 rounded-full bg-[var(--color-brand-300)]/40 blur-3xl"
           style={{ opacity: blobOpacity }}
         />
         <motion.div
-          className="bg-brand-400/25 absolute -right-28 bottom-10 h-80 w-80 rounded-full blur-3xl"
+          className="absolute -right-28 bottom-10 h-80 w-80 rounded-full bg-[var(--color-brand-400)]/25 blur-3xl"
           style={{ opacity: blobOpacity }}
         />
       </motion.div>
@@ -82,110 +54,148 @@ export const Section = ({ sponsors = SUPPORT_LOGOS }) => {
         {/* Heading */}
         <div className="mb-12">
           <motion.div
-            aria-label="Sponsors and Partners"
-            className="mb-6 inline-flex items-center gap-2 rounded-full border border-[var(--color-brand-200)] bg-white/90 px-5 py-2.5 text-sm font-semibold text-[var(--color-brand-700)] shadow-lg backdrop-blur-sm"
-            variants={itemVariants}>
-            <Handshake className="text-brand-500 h-4 w-4" />
-            Proudly partnered with leading institutions
-          </motion.div>
-          <h2 className="mt-4 text-4xl font-bold md:text-5xl">
-            <span className="from-brand-800 via-brand-600 to-brand-700 bg-gradient-to-r bg-clip-text text-transparent">
-              Supported by
+            className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-gradient-to-r from-emerald-500/20 to-cyan-500/20 border border-emerald-500/40 mb-6 backdrop-blur-sm"
+            initial={{ scale: 0, rotate: -180 }}
+            transition={{ type: "spring", stiffness: 200, delay: 0.2 }}
+            whileInView={{ scale: 1, rotate: 0 }}>
+            <Handshake
+              className="w-5 h-5 text-emerald-400 animate-spin"
+              style={{ animationDuration: "8s" }}
+            />
+            <span className="text-emerald-400 font-semibold">
+              Proudly partnered with leading institutions
             </span>
-          </h2>
-          <p className="mx-auto mt-3 max-w-2xl text-gray-600">
-            Nexus 2025 is made possible by the support of visionary
-            organizations and government agencies dedicated to advancing
-            cybersecurity and digital innovation in the Philippines. Their
-            commitment empowers our mission to build a safer, smarter future for
-            all.
-          </p>
+          </motion.div>
+
+          <motion.h2
+            className="text-5xl md:text-7xl font-bold mb-4"
+            initial={{ opacity: 0, y: 30 }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+            whileInView={{ opacity: 1, y: 0 }}>
+            <span className="bg-gradient-to-r from-emerald-400 via-cyan-400 to-teal-400 bg-clip-text text-transparent">
+              Our Sponsors
+            </span>
+          </motion.h2>
+
+          <motion.p
+            className="text-xl text-gray-400 max-w-3xl mx-auto"
+            initial={{ opacity: 0 }}
+            transition={{ duration: 0.8, delay: 0.6 }}
+            whileInView={{ opacity: 1 }}>
+            Join a prestigious group of sponsors and partners who are shaping
+            the future of technology and innovation. Elevate your brand by
+            collaborating with us.
+          </motion.p>
         </div>
 
-        {/* Supported Logos */}
-        <ul className="mx-auto grid max-w-5xl grid-cols-1 gap-10 sm:grid-cols-3">
-          {sponsors.map((sp, i) => (
-            <li key={sp.alt}>
-              <a
-                aria-label={sp.alt}
-                href={sp.link}
-                rel="noopener noreferrer"
-                tabIndex={0}
-                target="_blank">
-                <motion.div
-                  className="group relative flex h-56 items-center justify-center rounded-4xl bg-white/95 p-8 shadow-xl ring-1 ring-black/5 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl md:h-64"
-                  initial={{ scale: 0.9, opacity: 0 }}
-                  transition={{ duration: 0.4, delay: i * 0.1 }}
-                  viewport={{ once: true, amount: 0.5 }}
-                  whileInView={{ scale: 1, opacity: 1 }}>
-                  {/* Glow + sheen */}
-                  <span className="pointer-events-none absolute inset-0 rounded-4xl bg-[radial-gradient(60%_60%_at_50%_40%,rgba(255,255,255,.55),rgba(255,255,255,0))] opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-                  <motion.span
-                    aria-hidden
-                    className="pointer-events-none absolute inset-y-0 -left-1/3 w-1/3 -skew-x-12 bg-gradient-to-r from-white/0 via-white/40 to-white/0"
-                    initial={{ x: "-120%" }}
-                    transition={{ duration: 1.3, ease: "easeInOut" }}
-                    whileHover={{ x: ["-120%", "140%"] }}
-                  />
+        {/* Logos */}
 
-                  {/* Logo */}
-                  <Image
-                    alt={sp.alt}
-                    className="max-h-32 w-auto object-contain md:max-h-40"
-                    height={360}
-                    priority={false}
-                    src={sp.src}
-                    width={360}
-                  />
-                </motion.div>
-              </a>
-            </li>
-          ))}
-        </ul>
+        {/* Partners Marquee */}
+        <div className="mt-14">
+          <PartnersMarquee logos={PARTNERS} speedMs={SPEED_PARTNERS_MARQUEE} />
+        </div>
+      </div>
+    </section>
+  );
+}
 
-        <h2 className="my-14 text-3xl font-bold md:text-5xl">
-          <span className="from-brand-800 via-brand-600 to-brand-700 bg-gradient-to-r bg-clip-text text-transparent">
-            Our Sponsors
-          </span>
-        </h2>
+function PartnersMarquee({ logos = [], speedMs = 42000 }) {
+  const trackTop = [...logos, ...logos];
+  const offset = 1;
+  const trackBottom = [
+    ...logos.slice(offset),
+    ...logos.slice(0, offset),
+    ...logos.slice(offset),
+    ...logos.slice(0, offset),
+  ];
 
-        {/* Sponsors Logos */}
-        <ul className="mx-auto grid max-w-6xl grid-cols-1 place-items-center gap-10 sm:grid-cols-2">
-          {SPONSOR_LOGOS.map((sp, i) => (
-            <li className="flex justify-center" key={sp.alt}>
-              <motion.div
-                className="group relative flex h-50 items-center justify-center rounded-4xl bg-white/95 p-8 shadow-xl ring-1 ring-black/5 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl md:h-64"
-                initial={{ scale: 0.9, opacity: 0 }}
-                onClick={() =>
-                  window.open(sp.link, "_blank", "noopener,noreferrer")
-                }
-                transition={{ duration: 0.4, delay: i * 0.1 }}
-                viewport={{ once: true, amount: 0.5 }}
-                whileInView={{ scale: 1, opacity: 1 }}>
-                {/* Glow + sheen */}
-                <span className="pointer-events-none absolute inset-0 rounded-4xl bg-[radial-gradient(60%_60%_at_50%_40%,rgba(255,255,255,.55),rgba(255,255,255,0))] opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-                <motion.span
-                  aria-hidden
-                  className="pointer-events-none absolute inset-y-0 -left-1/3 w-1/3 -skew-x-12 bg-gradient-to-r from-white/0 via-white/40 to-white/0"
-                  initial={{ x: "-120%" }}
-                  transition={{ duration: 1.3, ease: "easeInOut" }}
-                  whileHover={{ x: ["-120%", "140%"] }}
-                />
-
-                {/* Logo */}
-                <Image
-                  alt={sp.alt}
-                  className="max-h-32 w-auto object-contain md:max-h-40"
-                  height={360}
-                  priority={false}
-                  src={sp.src}
-                  width={360}
-                />
-              </motion.div>
+  return (
+    <div className="relative overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)] py-4">
+      <div
+        className="group/marquee pointer-events-auto flex gap-6"
+        style={{ ["--speed"]: `${speedMs * 2}ms` }}>
+        <ul className="marquee-row will-change-transform">
+          {trackTop.map((l, i) => (
+            <li className="marquee-item" key={`row1-${i}`}>
+              <LogoSmall {...l} />
             </li>
           ))}
         </ul>
       </div>
-    </section>
+
+      <div
+        className="group/marquee pointer-events-auto mt-8 flex gap-6"
+        style={{ ["--speed"]: `${Math.round(speedMs * 2.1)}ms` }}>
+        <ul className="marquee-row marquee-reverse will-change-transform">
+          {trackBottom.map((l, i) => (
+            <li className="marquee-item" key={`row2-${i}`}>
+              <LogoSmall {...l} small />
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <style jsx>{`
+        .marquee-row {
+          display: flex;
+          align-items: center;
+          gap: 1.5rem;
+          min-width: max-content;
+          padding: 0.5rem 0;
+          animation: marquee var(--speed) linear infinite;
+        }
+        .marquee-reverse {
+          animation-name: marquee-rev;
+        }
+        .group\/marquee:hover .marquee-row {
+          animation-play-state: paused;
+        }
+        .marquee-item {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          min-height: 60px;
+          min-width: 140px;
+          padding: 0.75rem 1rem;
+        }
+        @keyframes marquee {
+          0% {
+            transform: translateX(0%);
+          }
+          100% {
+            transform: translateX(-50%);
+          }
+        }
+        @keyframes marquee-rev {
+          0% {
+            transform: translateX(-50%);
+          }
+          100% {
+            transform: translateX(0%);
+          }
+        }
+        @media (prefers-reduced-motion: reduce) {
+          .marquee-row {
+            animation: none;
+            transform: none !important;
+          }
+        }
+      `}</style>
+    </div>
   );
-};
+}
+
+function LogoSmall({ src, alt }) {
+  return (
+    <div
+      className="flex items-center justify-center rounded-lg px-4 py-3 transition-all duration-300 hover:-translate-y-0.5 hover:scale-105  bg-white/90 hover:bg-white/100 border border-white/20 shadow-md hover:shadow-lg"
+      title={alt}>
+      <img
+        alt={alt}
+        className="h-auto max-h-12 w-auto max-w-[120px] object-contain opacity-85 contrast-125 grayscale filter transition-all duration-300 hover:opacity-100 hover:grayscale-0"
+        loading="lazy"
+        src={src}
+      />
+    </div>
+  );
+}

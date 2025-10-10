@@ -361,13 +361,13 @@ export default function ToursSection() {
           </motion.p>
         </motion.div>
 
-        <motion.div
+        {/* <motion.div
           className="mb-16"
           initial={{ opacity: 0, scale: 0.9 }}
           transition={{ duration: 0.8, delay: 0.4 }}
           whileInView={{ opacity: 1, scale: 1 }}>
           <TourMap activeCity={activeCity} />
-        </motion.div>
+        </motion.div> */}
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {tourCities.map((city, idx) => (
