@@ -6,11 +6,12 @@ import { AdvancedNavbar } from "../components/AdvancedNavbar";
 import { HeroSection } from "../sections/HeroSection";
 import WhySponsorSection from "../sections/WhySponsorSection";
 import AudienceSection from "../sections/AudienceSection";
-import EventFormatSection from "../sections/EventFotmatSection";
+import EventFormatSection from "../sections/EventFotmatSection1";
 import PackagesSection from "../sections/PackagesSection";
 import ToursSection from "../sections/ToursSection";
 import ContactSection from "../sections/ContactSections";
 import { FooterSection } from "../sections/FooterSection";
+import { EventFormatsSection } from "../sections/EventFormatsSection";
 
 export const HomePage = () => {
   const [, setIsMenuOpen] = useState(false);
@@ -32,11 +33,11 @@ export const HomePage = () => {
       <HeroSection scrollToSection={scrollToSection} />
       <WhySponsorSection />
       <AudienceSection />
-      <EventFormatSection />
-      {/* <PackagesSection />
+      {/* <EventFormatSection /> */}
+      <EventFormatsSection />
       <ToursSection />
       <ContactSection />
-      <FooterSection /> */}
+      <FooterSection />
     </main>
   );
 };

@@ -20,7 +20,9 @@ export const AdvancedNavbar = ({ scrollToSection }) => {
     { name: "Why", id: "why" },
     { name: "Audience", id: "audience" },
     { name: "Format", id: "format" },
-    { name: "Packages", id: "packages" },
+    // { name: "Packages", id: "packages" },
+    { name: "Event Formats", id: "event-formats" },
+    { name: "Sponsors", id: "sponsors" },
     { name: "Tour", id: "tours" },
     { name: "Contact", id: "contact" },
   ];

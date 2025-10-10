@@ -156,23 +156,21 @@ export const HeroSection = ({ scrollToSection, containerVariants }) => {
             transition: "transform 0.3s ease-out",
           }}>
           {/* Logo with Advanced Animation */}
-          <div className="mb-8 relative inline-block">
+          <div className="relative inline-block mb-6 sm:mb-8">
             <div className="absolute inset-0 bg-emerald-400 blur-3xl opacity-30 animate-pulse" />
             <div className="relative">
-              <div className="w-[22rem] h-[18rem] md:w-[28rem] md:h-[22rem] lg:w-[32rem] lg:h-[15rem] mx-auto relative">
+              <div className="w-[18rem] h-[18rem] sm:w-[22rem] sm:h-[18rem] md:w-[28rem] md:h-[22rem] lg:w-[32rem] lg:h-[15rem] mx-auto relative">
                 {/* Logo Container */}
-                <div
-                  className={`absolute inset-0 flex items-center justify-center transition-transform duration-500 scale-110"
-    `}>
+                <div className="absolute inset-0 flex items-center justify-center transition-transform duration-500 scale-105 sm:scale-110">
                   <div className="relative">
                     {/* Main Logo */}
                     <img
                       alt="Nexus Logo"
-                      className="w-[22rem] h-[22rem] md:w-[28rem] md:h-[28rem] lg:w-[32rem] lg:h-[32rem] mx-auto relative z-10 drop-shadow-[0_0_30px_rgba(16,185,129,0.8)]"
+                      className="w-[18rem] h-[18rem] sm:w-[22rem] sm:h-[22rem] md:w-[28rem] md:h-[28rem] lg:w-[32rem] lg:h-[32rem] mx-auto relative z-10 drop-shadow-[0_0_30px_rgba(16,185,129,0.8)]"
                       src="/brand-logo/nexus-green.svg"
                     />
                     {/* Horizontal Light Streaks */}
-                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[22rem] md:w-[28rem] lg:w-[50rem] mx-auto h-1 opacity-100 transition-opacity duration-500">
+                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[18rem] sm:w-[22rem] md:w-[28rem] lg:w-[50rem] mx-auto h-1 opacity-100 transition-opacity duration-500">
                       <div className="w-full h-full bg-gradient-to-r from-transparent via-emerald-400 to-transparent animate-pulse" />
                     </div>
                   </div>

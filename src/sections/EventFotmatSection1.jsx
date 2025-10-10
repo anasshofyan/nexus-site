@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { motion, useScroll, useTransform, useInView } from "framer-motion";
 import { useRef } from "react";
 import {
