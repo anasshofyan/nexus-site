@@ -32,12 +32,11 @@ export const HomePage = () => {
       <HeroSection scrollToSection={scrollToSection} />
       <WhySponsorSection />
       <AudienceSection />
-      {/* <EventFormatSection /> */}
       <EventFormatsSection />
       <SponsorsSection />
-      <ToursSection />
+      {/* <ToursSection />
       <ContactSection />
-      <FooterSection />
+      <FooterSection /> */}
     </main>
   );
 };
