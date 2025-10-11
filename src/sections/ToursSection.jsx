@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { motion, useScroll, useTransform, useInView } from "framer-motion";
 import { useRef, useState } from "react";
 import {
@@ -302,7 +303,7 @@ export default function ToursSection() {
 
   return (
     <section
-      className="relative min-h-screen flex items-center justify-center py-32 px-4 overflow-hidden bg-gradient-to-br from-slate-950 via-emerald-950/20 to-slate-950"
+      className="relative min-h-screen flex items-center justify-center py-32 px-4 overflow-hidden"
       id="tours"
       ref={containerRef}>
       <motion.div

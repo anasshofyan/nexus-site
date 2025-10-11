@@ -139,7 +139,7 @@ export const EventFormatsSection = () => {
 
   return (
     <section
-      className="relative overflow-hidden py-20 md:py-28 bg-gradient-to-br from-slate-950 via-purple-950/20 to-slate-950"
+      className="relative overflow-hidden py-20 md:py-28"
       id="event-formats">
       <motion.div
         animate={{

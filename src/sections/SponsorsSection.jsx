@@ -26,7 +26,7 @@ export const SponsorsSection = () => {
 
   return (
     <section
-      className="relative min-h-screen flex items-center overflow-hidden py-20 md:py-28 bg-gradient-to-br from-brand-400/10 via-brand-900/50 to-teal-800"
+      className="relative min-h-screen flex items-center overflow-hidden py-20 md:py-28"
       id="sponsors"
       ref={sectionRef}>
       {/* Animated Background Blobs */}

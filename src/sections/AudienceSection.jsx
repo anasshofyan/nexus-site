@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { motion, useScroll, useTransform, useInView } from "framer-motion";
 import { useRef } from "react";
 import {
@@ -174,7 +175,7 @@ export default function AudienceSection() {
 
   return (
     <section
-      className="relative min-h-screen flex items-center justify-center py-32 px-4 overflow-hidden bg-gradient-to-br from-slate-950 via-blue-950/30 to-slate-950"
+      className="relative min-h-screen flex items-center justify-center py-32 px-4 overflow-hidden"
       id="audience"
       ref={containerRef}>
       <motion.div

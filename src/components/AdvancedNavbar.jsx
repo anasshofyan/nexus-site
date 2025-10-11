@@ -85,7 +85,9 @@ export const AdvancedNavbar = ({ scrollToSection }) => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             {/* Logo Section with Advanced Animation */}
-            <div className="flex items-center space-x-3 group cursor-pointer">
+            <div
+              className="flex items-center space-x-3 group cursor-pointer"
+              onClick={() => handleNavClick("hero")}>
               {/* Animated Border */}
               <div className="absolute left-4 w-16 h-16 border-2 border-emerald-400/30 rounded-full animate-spin-slow opacity-0 group-hover:opacity-100 transition-opacity" />
 
