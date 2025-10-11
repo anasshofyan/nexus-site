@@ -1,5 +1,11 @@
 /* eslint-disable prettier/prettier */
-import { motion, useScroll, useTransform, useInView } from "framer-motion";
+import {
+  motion,
+  useScroll,
+  useTransform,
+  useInView,
+  AnimatePresence,
+} from "framer-motion";
 import { useRef, useState } from "react";
 import {
   MapPin,
@@ -11,58 +17,10 @@ import {
   ArrowRight,
 } from "lucide-react";
 
-const tourCities = [
-  {
-    city: "Singapore",
-    date: "March 15, 2025",
-    country: "Singapore",
-    attendees: "200+",
-    gradient: "from-red-500 to-pink-600",
-    position: { top: "45%", left: "70%" },
-  },
-  {
-    city: "Jakarta",
-    date: "April 22, 2025",
-    country: "Indonesia",
-    attendees: "200+",
-    gradient: "from-blue-500 to-cyan-600",
-    position: { top: "55%", left: "65%" },
-  },
-  {
-    city: "Manila",
-    date: "May 18, 2025",
-    country: "Philippines",
-    attendees: "200+",
-    gradient: "from-yellow-500 to-orange-600",
-    position: { top: "35%", left: "75%" },
-  },
-  {
-    city: "Bangkok",
-    date: "June 10, 2025",
-    country: "Thailand",
-    attendees: "200+",
-    gradient: "from-purple-500 to-pink-600",
-    position: { top: "40%", left: "60%" },
-  },
-  {
-    city: "Kuala Lumpur",
-    date: "July 8, 2025",
-    country: "Malaysia",
-    attendees: "200+",
-    gradient: "from-emerald-500 to-teal-600",
-    position: { top: "50%", left: "62%" },
-  },
-  {
-    city: "Ho Chi Minh",
-    date: "August 5, 2025",
-    country: "Vietnam",
-    attendees: "200+",
-    gradient: "from-indigo-500 to-purple-600",
-    position: { top: "35%", left: "65%" },
-  },
-];
+import { TOUR_CITIES } from "../constants";
+import { GalleryModal } from "../components/GalleryModal";
 
-const CityCard = ({ city, index, isActive, onClick }) => {
+const CityCard = ({ city, index, isActive, onClick, setShowGallery }) => {
   const cardRef = useRef(null);
   const isInView = useInView(cardRef, { once: false, amount: 0.5 });
   const { scrollYProgress } = useScroll({
@@ -170,9 +128,12 @@ const CityCard = ({ city, index, isActive, onClick }) => {
 
           <motion.button
             className={`w-full py-3 rounded-xl bg-gradient-to-r ${city.gradient} text-white font-bold shadow-lg hover:shadow-2xl transition-all duration-300 flex items-center justify-center gap-2 group/btn`}
+            onClick={() => {
+              setShowGallery({ images: city.gallery, gradient: city.gradient });
+            }}
             whileHover={{ scale: 1.05, x: 5 }}
             whileTap={{ scale: 0.95 }}>
-            <span>Reserve Spot</span>
+            <span>View Gallery</span>
             <ArrowRight className="w-5 h-5 group-hover/btn:translate-x-1 transition-transform" />
           </motion.button>
 
@@ -189,108 +150,9 @@ const CityCard = ({ city, index, isActive, onClick }) => {
   );
 };
 
-const TourMap = ({ activeCity }) => {
-  return (
-    <div className="relative w-full h-[600px] rounded-3xl overflow-hidden bg-gradient-to-br from-slate-900/50 to-slate-800/50 backdrop-blur-xl border border-emerald-500/30">
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(16,185,129,0.1)_0%,transparent_70%)]" />
-
-      {/* Simplified APAC Map */}
-      <svg
-        className="absolute inset-0 w-full h-full opacity-30"
-        viewBox="0 0 100 100">
-        <path
-          className="text-emerald-500/50"
-          d="M30,40 Q40,30 50,35 T70,40 Q75,45 70,50 T50,65 Q40,70 35,60 T30,40 Z"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="0.5"
-        />
-      </svg>
-
-      {/* City Markers */}
-      {tourCities.map((city, idx) => (
-        <motion.div
-          animate={{ scale: activeCity === idx ? 1.5 : 1 }}
-          className="absolute"
-          initial={{ scale: 0 }}
-          key={idx}
-          style={{
-            top: city.position.top,
-            left: city.position.left,
-            transform: "translate(-50%, -50%)",
-          }}
-          transition={{ duration: 0.3 }}>
-          <motion.div
-            animate={{
-              scale: activeCity === idx ? [1, 1.2, 1] : 1,
-            }}
-            className="relative"
-            transition={{
-              duration: 2,
-              repeat: activeCity === idx ? Infinity : 0,
-            }}>
-            <div
-              className={`w-4 h-4 rounded-full bg-gradient-to-br ${city.gradient} shadow-2xl`}
-            />
-            {activeCity === idx && (
-              <>
-                <div className="absolute inset-0 w-4 h-4 rounded-full bg-gradient-to-br from-emerald-500 to-cyan-500 animate-ping" />
-                <div className="absolute -top-8 left-1/2 -translate-x-1/2 whitespace-nowrap">
-                  <div
-                    className={`px-3 py-1 rounded-lg bg-gradient-to-r ${city.gradient} text-white text-xs font-bold shadow-xl`}>
-                    {city.city}
-                  </div>
-                </div>
-              </>
-            )}
-          </motion.div>
-        </motion.div>
-      ))}
-
-      {/* Connection Lines */}
-      <svg className="absolute inset-0 w-full h-full pointer-events-none">
-        {tourCities.slice(0, -1).map((city, idx) => {
-          const nextCity = tourCities[idx + 1];
-          return (
-            <motion.line
-              animate={{ pathLength: 1 }}
-              className="opacity-50"
-              initial={{ pathLength: 0 }}
-              key={idx}
-              stroke="url(#gradient)"
-              strokeDasharray="5,5"
-              strokeWidth="2"
-              transition={{ duration: 2, delay: idx * 0.3 }}
-              x1={city.position.left}
-              x2={nextCity.position.left}
-              y1={city.position.top}
-              y2={nextCity.position.top}
-            />
-          );
-        })}
-        <defs>
-          <linearGradient id="gradient" x1="0%" x2="100%" y1="0%" y2="0%">
-            <stop offset="0%" stopColor="#10b981" />
-            <stop offset="100%" stopColor="#06b6d4" />
-          </linearGradient>
-        </defs>
-      </svg>
-
-      <div className="absolute bottom-6 left-6 bg-slate-900/80 backdrop-blur-xl px-6 py-4 rounded-2xl border border-emerald-500/30">
-        <div className="flex items-center gap-3">
-          <Plane className="w-6 h-6 text-emerald-400" />
-          <div>
-            <p className="text-xs text-gray-400">Total Tour Cities</p>
-            <p className="text-2xl font-bold text-white">{tourCities.length}</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-};
-
 export default function ToursSection() {
   const [activeCity, setActiveCity] = useState(0);
+  const [showGallery, setShowGallery] = useState(false);
   const containerRef = useRef(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -362,22 +224,15 @@ export default function ToursSection() {
           </motion.p>
         </motion.div>
 
-        {/* <motion.div
-          className="mb-16"
-          initial={{ opacity: 0, scale: 0.9 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-          whileInView={{ opacity: 1, scale: 1 }}>
-          <TourMap activeCity={activeCity} />
-        </motion.div> */}
-
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {tourCities.map((city, idx) => (
+          {TOUR_CITIES.map((city, idx) => (
             <CityCard
               city={city}
               index={idx}
               isActive={activeCity === idx}
               key={idx}
               onClick={setActiveCity}
+              setShowGallery={setShowGallery}
             />
           ))}
         </div>
@@ -400,6 +255,15 @@ export default function ToursSection() {
           </div>
         </motion.div>
       </div>
+      <AnimatePresence>
+        {showGallery && (
+          <GalleryModal
+            images={showGallery.images}
+            backdropGradient={showGallery.gradient}
+            onClose={() => setShowGallery(false)}
+          />
+        )}
+      </AnimatePresence>
     </section>
   );
 }

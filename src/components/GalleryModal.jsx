@@ -7,6 +7,7 @@ export const GalleryModal = ({
   index = 0,
   onClose,
   onIndexChange,
+  backdropGradient,
 }) => {
   const [i, setI] = useState(index);
   const wrap = (n) => {
@@ -44,8 +45,10 @@ export const GalleryModal = ({
       className="fixed inset-0 z-50 flex items-center justify-center p-4"
       exit={{ opacity: 0 }}
       initial={{ opacity: 0 }}>
+      {/* Gradient + blur overlay */}
       <motion.div
-        className="absolute inset-0 bg-black/80 backdrop-blur-md"
+        className={`absolute inset-0 backdrop-blur-[6px] ${backdropGradient ? `bg-gradient-to-br ${backdropGradient}` : "bg-gradient-to-br from-brand-900/80 via-tech-green-700/70 to-tech-green-900"}`}
+        style={{ opacity: 0.95 }}
         onClick={onClose}
       />
       <motion.div
@@ -67,7 +70,7 @@ export const GalleryModal = ({
         </motion.button>
 
         {/* Slider */}
-        <div className="relative overflow-hidden rounded-2xl bg-black/70 shadow-2xl">
+        <div className="relative overflow-hidden rounded-2xl bg-black/70 shadow-2xl backdrop-blur-md">
           <div className="relative aspect-[16/10] w-full sm:aspect-[16/9]">
             {/* Slide area with drag/swipe */}
             <motion.div
@@ -86,12 +89,10 @@ export const GalleryModal = ({
               transition={{ type: "spring", stiffness: 220, damping: 26 }}>
               <img
                 alt={images[i]?.alt || `Photo ${i + 1}`}
-                className="object-contain select-none"
-                fill
-                loading="eager"
-                priority={false}
-                sizes="80vw"
+                className="object-contain select-none w-full h-full"
                 src={images[i]?.src}
+                loading="eager"
+                style={{ objectFit: "contain" }}
               />
             </motion.div>
 
@@ -131,12 +132,12 @@ export const GalleryModal = ({
                     setI(idx);
                     onIndexChange?.(idx);
                   }}>
-                  <Image
+                  <img
                     alt={img.alt || `Thumb ${idx + 1}`}
-                    className="object-cover"
-                    fill
-                    sizes="160px"
+                    className="object-cover w-full h-full"
                     src={img.src}
+                    loading="lazy"
+                    style={{ objectFit: "cover" }}
                   />
                 </button>
               ))}
