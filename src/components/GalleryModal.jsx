@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 /* eslint-disable no-undef */
 import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
@@ -48,8 +49,8 @@ export const GalleryModal = ({
       {/* Gradient + blur overlay */}
       <motion.div
         className={`absolute inset-0 backdrop-blur-[6px] ${backdropGradient ? `bg-gradient-to-br ${backdropGradient}` : "bg-gradient-to-br from-brand-900/80 via-tech-green-700/70 to-tech-green-900"}`}
-        style={{ opacity: 0.95 }}
         onClick={onClose}
+        style={{ opacity: 0.95 }}
       />
       <motion.div
         animate={{ scale: 1, opacity: 1 }}
@@ -90,8 +91,8 @@ export const GalleryModal = ({
               <img
                 alt={images[i]?.alt || `Photo ${i + 1}`}
                 className="object-contain select-none w-full h-full"
-                src={images[i]?.src}
                 loading="eager"
+                src={images[i]?.src}
                 style={{ objectFit: "contain" }}
               />
             </motion.div>
@@ -135,8 +136,8 @@ export const GalleryModal = ({
                   <img
                     alt={img.alt || `Thumb ${idx + 1}`}
                     className="object-cover w-full h-full"
-                    src={img.src}
                     loading="lazy"
+                    src={img.src}
                     style={{ objectFit: "cover" }}
                   />
                 </button>
