@@ -165,6 +165,6 @@ export const PARTNERS = [
   { src: "/images/sponsors/trend.png", alt: "Trend Micro" },
 ];
 
-export const EMAIL = "hello@nthetehgroup.com";
-export const MAILTO_URL = `mailto:${EMAIL}?subject=Inquiry%20about%20NEXUS%20Summit&body=Hi%20NEXUS%20Summit%20Team%2C%0A%0AI%20would%20like%20to%20know%20more%20about%20your%20event.%0A%0ARegards%2C`;
+export const EMAIL = "Jeffrey.teh@thetehgroup.com";
+export const MAILTO_URL = `mailto:${EMAIL}?subject=Become a Sponsor Nexus 2026&body=Hello, I am interested in becoming a sponsor for TechFest 2026 event. Could we discuss further details about the event? `;
 export const PHONE = "+60 18-219 8127";

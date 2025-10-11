@@ -73,7 +73,7 @@ const eventFormats = [
   {
     id: 4,
     icon: Mic2,
-    title: "Insightful Discussion",
+    title: "Insightfull Conference",
     description:
       "Industry leaders share insights on emerging trends, best practices, and future innovations in the technology landscape.",
     features: [
@@ -100,7 +100,7 @@ const eventFormats = [
       "Informal discussions",
     ],
     image:
-      "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=800&h=600&fit=crop",
+      "https://images.unsplash.com/photo-1632383380175-812d44ec112b?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=880",
     color: "from-emerald-500 to-teal-600",
     attendees: "Open",
   },

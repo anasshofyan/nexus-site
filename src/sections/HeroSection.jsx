@@ -1,8 +1,10 @@
+/* eslint-disable prettier/prettier */
 /* eslint-disable no-undef */
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 
 import { TiltCard } from "../components/TiltCard";
+import { MAILTO_URL } from "../constants";
 
 // AnimatedSection Component
 const AnimatedSection = ({ id, children }) => {
@@ -70,7 +72,7 @@ const GlowingOrb = ({ delay = 0 }) => {
   );
 };
 
-export const HeroSection = ({ scrollToSection, containerVariants }) => {
+export const HeroSection = ({ containerVariants }) => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [typedText, setTypedText] = useState("");
   const fullText = "Connecting Innovation Across the Asia-Pacific";
@@ -121,16 +123,6 @@ export const HeroSection = ({ scrollToSection, containerVariants }) => {
       gradient: "from-tech-green-400 to-indigo-600",
     },
   ];
-
-  // Fallback scrollToSection agar tidak error jika tidak diberikan
-  const safeScrollToSection =
-    typeof scrollToSection === "function" ? scrollToSection : (
-      () => {
-        console.warn(
-          "[Hero] scrollToSection prop is not provided or not a function."
-        );
-      }
-    );
 
   return (
     <AnimatedSection containerVariants={containerVariants} id="hero">
@@ -206,9 +198,9 @@ export const HeroSection = ({ scrollToSection, containerVariants }) => {
             {/* Main Button */}
             <button
               className="relative bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-400 hover:to-emerald-500 px-10 py-5 rounded-full font-bold text-lg shadow-2xl transition-all duration-300 transform hover:scale-110 group"
-              onClick={() => safeScrollToSection("why")}>
+              onClick={() => (window.location.href = MAILTO_URL)}>
               <span className="relative z-10 flex items-center gap-3">
-                Discover More
+                Be Our Sponsor
                 <svg
                   className="w-5 h-5 group-hover:translate-x-2 transition-transform duration-300"
                   fill="none"

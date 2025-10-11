@@ -17,13 +17,11 @@ export const AdvancedNavbar = ({ scrollToSection }) => {
   const [, setHoveredItem] = useState(null);
 
   const navItems = [
-    { name: "Why", id: "why" },
-    { name: "Audience", id: "audience" },
-    { name: "Format", id: "format" },
-    // { name: "Packages", id: "packages" },
-    { name: "Event Formats", id: "event-formats" },
     { name: "Sponsors", id: "sponsors" },
+    { name: "Why", id: "why" },
     { name: "Tour", id: "tours" },
+    { name: "Target Audience", id: "audience" },
+    { name: "Event Formats", id: "event-formats" },
     { name: "Contact", id: "contact" },
   ];
 

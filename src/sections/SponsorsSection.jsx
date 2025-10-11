@@ -128,33 +128,6 @@ export const SponsorsSection = () => {
           whileInView={{ opacity: 1, y: 0 }}>
           <PartnersMarquee logos={PARTNERS} speedMs={SPEED_PARTNERS_MARQUEE} />
         </motion.div>
-
-        {/* CTA */}
-        {/* <motion.div
-          className="mt-20 text-center"
-          initial={{ opacity: 0, y: 30 }}
-          transition={{ delay: 1 }}
-          viewport={{ once: false }}
-          whileInView={{ opacity: 1, y: 0 }}>
-          <div className="inline-block p-8 rounded-3xl bg-gradient-to-br from-blue-900/60 to-emerald-900/40 backdrop-blur-sm border-2 border-emerald-400/30 shadow-2xl">
-            <Sparkles className="w-8 h-8 text-emerald-400 mx-auto mb-4" />
-            <h3 className="text-2xl font-bold text-white mb-3">
-              Become a Sponsor
-            </h3>
-            <p className="text-gray-200 mb-6 max-w-md">
-              Partner with NEXUS to amplify your brand&#39;s reach
-            </p>
-            <motion.button
-              className="bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-600 hover:to-teal-600 text-white font-semibold px-8 py-4 rounded-full shadow-lg transition-all"
-              whileHover={{
-                scale: 1.05,
-                boxShadow: "0 0 40px rgba(16, 185, 129, 0.6)",
-              }}
-              whileTap={{ scale: 0.95 }}>
-              Contact Us
-            </motion.button>
-          </div>
-        </motion.div> */}
       </div>
     </section>
   );
@@ -174,12 +147,18 @@ const PartnersMarquee = ({ logos = [], speedMs = 40000 }) => {
   ];
 
   return (
-    <div className="relative overflow-hidden py-4 max-w-6xl mx-auto">
+    <div className="relative overflow-hidden py-4 max-w-7xl mx-auto">
       {/* Top Row */}
       <div
         className="mb-8 relative"
         onMouseEnter={() => setIsPausedTop(true)}
-        onMouseLeave={() => setIsPausedTop(false)}>
+        onMouseLeave={() => setIsPausedTop(false)}
+        style={{
+          maskImage:
+            "linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%)",
+          WebkitMaskImage:
+            "linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%)",
+        }}>
         <motion.div
           animate={{ scale: isPausedTop ? 1.05 : 1 }}
           className="flex gap-6"
@@ -214,7 +193,13 @@ const PartnersMarquee = ({ logos = [], speedMs = 40000 }) => {
       <div
         className="relative"
         onMouseEnter={() => setIsPausedBottom(true)}
-        onMouseLeave={() => setIsPausedBottom(false)}>
+        onMouseLeave={() => setIsPausedBottom(false)}
+        style={{
+          maskImage:
+            "linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%)",
+          WebkitMaskImage:
+            "linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%)",
+        }}>
         <motion.div
           animate={{ scale: isPausedBottom ? 1.05 : 1 }}
           className="flex gap-6"

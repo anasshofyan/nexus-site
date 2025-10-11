@@ -6,11 +6,11 @@ import { AdvancedNavbar } from "../components/AdvancedNavbar";
 import { HeroSection } from "../sections/HeroSection";
 import WhySponsorSection from "../sections/WhySponsorSection";
 import AudienceSection from "../sections/AudienceSection";
+import { EventFormatsSection } from "../sections/EventFormatsSection";
+import { SponsorsSection } from "../sections/SponsorsSection";
 import ToursSection from "../sections/ToursSection";
 import ContactSection from "../sections/ContactSections";
 import { FooterSection } from "../sections/FooterSection";
-import { EventFormatsSection } from "../sections/EventFormatsSection";
-import SponsorsSection from "../sections/SponsorsSection";
 
 export const HomePage = () => {
   const [, setIsMenuOpen] = useState(false);
@@ -30,13 +30,13 @@ export const HomePage = () => {
       <TechParticleField />
       <AdvancedNavbar scrollToSection={scrollToSection} />
       <HeroSection scrollToSection={scrollToSection} />
+      <SponsorsSection />
       <WhySponsorSection />
+      <ToursSection />
       <AudienceSection />
       <EventFormatsSection />
-      <SponsorsSection />
-      {/* <ToursSection />
       <ContactSection />
-      <FooterSection /> */}
+      <FooterSection />
     </main>
   );
 };
