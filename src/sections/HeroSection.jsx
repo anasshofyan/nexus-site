@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 
 import { TiltCard } from "../components/TiltCard";
-import { MAILTO_URL } from "../constants";
+import { BRAND_LOGO, MAILTO_URL } from "../constants";
 
 // AnimatedSection Component
 const AnimatedSection = ({ id, children }) => {
@@ -159,7 +159,7 @@ export const HeroSection = ({ containerVariants }) => {
                     <img
                       alt="Nexus Logo"
                       className="w-[18rem] h-[18rem] sm:w-[22rem] sm:h-[22rem] md:w-[28rem] md:h-[28rem] lg:w-[32rem] lg:h-[32rem] mx-auto relative z-10 drop-shadow-[0_0_30px_rgba(16,185,129,0.8)]"
-                      src="/brand-logo/nexus-green.svg"
+                      src={BRAND_LOGO}
                     />
                     {/* Horizontal Light Streaks */}
                     <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[18rem] sm:w-[22rem] md:w-[28rem] lg:w-[50rem] mx-auto h-1 opacity-100 transition-opacity duration-500">

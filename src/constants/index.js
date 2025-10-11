@@ -7,8 +7,8 @@ export const MENU_ITEMS = [
   { id: "format-events", label: "Format Events", href: "#format-events" },
 ];
 
-export const BRAND_LOGO = "/images/cyber-attack.svg";
-export const BRAND_LOGO_WHITE = "/images/cyber-attack-white.svg";
+export const BRAND_LOGO = "/images/brand-logo/nexus-green.svg";
+export const BRAND_LOGO_WHITE = "/images/brand-logo/nexus-teh-white.svg";
 export const SPEED_PARTNERS_MARQUEE = 300000; // kecepatan scroll (ms)
 export const LINK_REGISTER =
   " https://event.thetehgroup.com/cyberattack-nexus-manila-2025-the-offsite-retreat-/overview?token=ZT1jNmI4M2RjYS0zMTIzLTRhNmEtYTI1Zi04NDdmYjdlMDdhNTQ%3d";

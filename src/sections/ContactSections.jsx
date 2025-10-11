@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 /* eslint-disable no-undef */
 import { motion, useScroll, useTransform, useInView } from "framer-motion";
 import { useRef, useState } from "react";
@@ -88,6 +89,7 @@ const hashtags = [
 const ContactCard = ({ contact, index }) => {
   const [copiedField, setCopiedField] = useState(null);
   const [imageError, setImageError] = useState(false);
+  const [showWAmsg, setShowWAmsg] = useState(false);
   const cardRef = useRef(null);
   const isInView = useInView(cardRef, { once: false, amount: 0.5 });
   const { scrollYProgress } = useScroll({
@@ -108,6 +110,27 @@ const ContactCard = ({ contact, index }) => {
     navigator.clipboard.writeText(text);
     setCopiedField(field);
     setTimeout(() => setCopiedField(null), 2000);
+  };
+
+  // Helper to format phone for WhatsApp (remove spaces, replace + with nothing) and add message template
+  const getWhatsappUrl = (phone) => {
+    let num = phone.replace(/\s|-|\(|\)/g, "");
+    if (num.startsWith("+")) num = num.substring(1);
+    const message = encodeURIComponent(
+      `Hello ${contact.name}, I am interested in sponsorship opportunities with Nexus. Please provide more information. Thank you!`
+    );
+    return `https://wa.me/${num}?text=${message}`;
+  };
+
+  // Handler for WhatsApp click
+  const handleWA = (e) => {
+    e.preventDefault();
+    setShowWAmsg(true);
+    const url = getWhatsappUrl(contact.phone);
+    setTimeout(() => {
+      window.open(url, "_blank", "noopener,noreferrer");
+      setTimeout(() => setShowWAmsg(false), 1200);
+    }, 900);
   };
 
   return (
@@ -252,13 +275,34 @@ const ContactCard = ({ contact, index }) => {
             </motion.div>
           </div>
 
-          <motion.button
-            className={`w-full mt-6 py-3 rounded-xl bg-gradient-to-r ${contact.gradient} text-white font-bold shadow-lg hover:shadow-2xl transition-all duration-300 flex items-center justify-center gap-2 group/btn`}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}>
-            <Send className="w-4 h-4 group-hover/btn:translate-x-1 group-hover/btn:-translate-y-1 transition-transform" />
-            <span>Contact Now</span>
-          </motion.button>
+          {/* WhatsApp Contact Button & Message */}
+          <div className="relative flex flex-col items-center">
+            {showWAmsg && (
+              <div className="absolute -top-10 left-1/2 -translate-x-1/2 bg-black/80 text-emerald-300 px-4 py-2 rounded-xl shadow-lg text-sm font-semibold animate-fadein z-20">
+                Opening WhatsApp...
+              </div>
+            )}
+            <motion.a
+              className={`w-full mt-6 py-3 rounded-xl bg-gradient-to-r ${contact.gradient} text-white font-bold shadow-lg hover:shadow-2xl transition-all duration-300 flex items-center justify-center gap-2 group/btn`}
+              href={getWhatsappUrl(contact.phone)}
+              rel="noopener noreferrer"
+              target="_blank"
+              onClick={handleWA}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}>
+              <Send className="w-4 h-4 group-hover/btn:translate-x-1 group-hover/btn:-translate-y-1 transition-transform" />
+              <span>Contact Now</span>
+            </motion.a>
+          </div>
+          <style>{`
+          @keyframes fadein {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+          }
+          .animate-fadein {
+            animation: fadein 0.5s ease;
+          }
+        `}</style>
 
           <motion.div
             className={`absolute bottom-0 left-0 right-0 h-1.5 bg-gradient-to-r ${contact.gradient}`}

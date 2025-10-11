@@ -2,6 +2,8 @@
 import { useState, useEffect, useRef } from "react";
 import * as THREE from "three";
 
+import { BRAND_LOGO } from "../constants";
+
 const ThreeFooterBackground = () => {
   const mountRef = useRef(null);
 
@@ -292,14 +294,10 @@ export const FooterSection = () => {
           <div className="lg:col-span-1">
             <div className="group mb-6">
               <div className="flex items-center space-x-3 mb-4">
-                <div className="w-12 h-12 bg-gradient-to-br from-emerald-400 to-cyan-500 rounded-lg flex items-center justify-center font-bold text-2xl text-gray-900 shadow-lg transform group-hover:rotate-12 transition-transform duration-500">
-                  N
-                </div>
                 <div>
                   <div className="text-xl font-bold bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent">
-                    NEXUS
+                    <img className="h-6 w-auto" src={BRAND_LOGO} />
                   </div>
-                  <div className="text-xs text-gray-400">Tech Summit 2025</div>
                 </div>
               </div>
             </div>
@@ -370,7 +368,7 @@ export const FooterSection = () => {
         <div className="pt-8 border-t border-emerald-400/20">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-gray-500 text-sm">
-              © {currentYear} Nexus Tech Summit. All rights reserved.
+              © {currentYear} Nexus by TEH Group. All rights reserved.
             </p>
 
             <div className="flex items-center gap-6">

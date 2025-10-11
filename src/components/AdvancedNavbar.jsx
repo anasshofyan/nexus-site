@@ -1,7 +1,10 @@
+/* eslint-disable prettier/prettier */
 /* eslint-disable no-undef */
 import { useState, useEffect } from "react";
 import { useScroll, useTransform, motion } from "framer-motion";
 import { Menu, X, ChevronDown } from "lucide-react";
+
+import { BRAND_LOGO_WHITE } from "../constants";
 
 export const AdvancedNavbar = ({ scrollToSection }) => {
   const { scrollY } = useScroll();
@@ -73,12 +76,12 @@ export const AdvancedNavbar = ({ scrollToSection }) => {
   return (
     <>
       <motion.nav
-        style={{ backgroundColor: navBackground }}
         className={`fixed w-full z-50 backdrop-blur-xl border-b transition-all duration-500 ${
           scrolled ?
             "border-emerald-400/20 shadow-lg shadow-emerald-500/10"
           : "border-transparent"
-        }`}>
+        }`}
+        style={{ backgroundColor: navBackground }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             {/* Logo Section with Advanced Animation */}
@@ -97,9 +100,9 @@ export const AdvancedNavbar = ({ scrollToSection }) => {
                     {/* Icon Placeholder - ganti dengan logo Anda */}
                     <div className="block">
                       <img
-                        src="/brand-logo/nexus-teh-white.svg"
                         alt="Nexus Logo"
                         className="w-32 h-w-32 sm:w-44 sm:h-44"
+                        src={BRAND_LOGO_WHITE}
                       />
                     </div>
                   </div>
@@ -111,17 +114,17 @@ export const AdvancedNavbar = ({ scrollToSection }) => {
             <div className="hidden lg:flex items-center space-x-2">
               {navItems.map((item, idx) => (
                 <div
-                  key={item.id}
                   className="relative"
+                  key={item.id}
                   onMouseEnter={() => setHoveredItem(item.id)}
                   onMouseLeave={() => setHoveredItem(null)}>
                   <button
-                    onClick={() => handleNavClick(item.id)}
                     className={`group relative px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 ${
                       activeSection === item.id ?
                         "text-emerald-400"
                       : "text-gray-300 hover:text-white"
                     }`}
+                    onClick={() => handleNavClick(item.id)}
                     style={{
                       animationDelay: `${idx * 0.1}s`,
                     }}>
@@ -152,8 +155,8 @@ export const AdvancedNavbar = ({ scrollToSection }) => {
             {/* CTA Button - Desktop */}
             <div className="hidden lg:block">
               <button
-                onClick={() => handleNavClick("contact")}
-                className="group relative px-6 py-2.5 rounded-full font-semibold text-sm overflow-hidden">
+                className="group relative px-6 py-2.5 rounded-full font-semibold text-sm overflow-hidden"
+                onClick={() => handleNavClick("contact")}>
                 {/* Animated Background */}
                 <div className="absolute inset-0 bg-gradient-to-r from-emerald-500 to-cyan-500 transition-transform duration-300 group-hover:scale-105" />
                 <div className="absolute inset-0 bg-gradient-to-r from-cyan-500 to-emerald-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
@@ -172,10 +175,10 @@ export const AdvancedNavbar = ({ scrollToSection }) => {
                     stroke="currentColor"
                     viewBox="0 0 24 24">
                     <path
+                      d="M13 7l5 5m0 0l-5 5m5-5H6"
                       strokeLinecap="round"
                       strokeLinejoin="round"
                       strokeWidth={2}
-                      d="M13 7l5 5m0 0l-5 5m5-5H6"
                     />
                   </svg>
                 </span>
@@ -210,13 +213,13 @@ export const AdvancedNavbar = ({ scrollToSection }) => {
             <div className="space-y-2">
               {navItems.map((item, idx) => (
                 <button
-                  key={item.id}
-                  onClick={() => handleNavClick(item.id)}
                   className={`group w-full flex items-center justify-between px-4 py-3 rounded-lg transition-all duration-300 ${
                     activeSection === item.id ?
                       "bg-gradient-to-r from-emerald-500/20 to-cyan-500/20 border border-emerald-400/30"
                     : "hover:bg-gray-800 border border-transparent"
                   }`}
+                  key={item.id}
+                  onClick={() => handleNavClick(item.id)}
                   style={{
                     animationDelay: `${idx * 0.05}s`,
                     animation:
@@ -252,8 +255,8 @@ export const AdvancedNavbar = ({ scrollToSection }) => {
             {/* Mobile CTA */}
             <div className="mt-6 pt-6 border-t border-gray-700">
               <button
-                onClick={() => handleNavClick("contact")}
-                className="w-full px-6 py-3 bg-gradient-to-r from-emerald-500 to-cyan-500 hover:from-emerald-400 hover:to-cyan-400 rounded-lg font-semibold text-gray-900 flex items-center justify-center gap-2 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-emerald-500/50">
+                className="w-full px-6 py-3 bg-gradient-to-r from-emerald-500 to-cyan-500 hover:from-emerald-400 hover:to-cyan-400 rounded-lg font-semibold text-gray-900 flex items-center justify-center gap-2 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-emerald-500/50"
+                onClick={() => handleNavClick("contact")}>
                 Get Started
                 <svg
                   className="w-5 h-5"
@@ -261,10 +264,10 @@ export const AdvancedNavbar = ({ scrollToSection }) => {
                   stroke="currentColor"
                   viewBox="0 0 24 24">
                   <path
+                    d="M13 7l5 5m0 0l-5 5m5-5H6"
                     strokeLinecap="round"
                     strokeLinejoin="round"
                     strokeWidth={2}
-                    d="M13 7l5 5m0 0l-5 5m5-5H6"
                   />
                 </svg>
               </button>
