@@ -1,17 +1,17 @@
 export const MENU_ITEMS = [
-  { id: "home", label: "Home", href: "#home" },
-  { id: "about", label: "About", href: "#about" },
-  { id: "sponsors", label: "Sponsors", href: "#sponsors" },
-  { id: "highlights", label: "Highlights", href: "#highlights" },
-  { id: "locations", label: "Locations", href: "#locations" },
-  { id: "format-events", label: "Format Events", href: "#format-events" },
+  { name: "Sponsors", id: "sponsors" },
+  { name: "Why", id: "why" },
+  { name: "Tour", id: "tours" },
+  { name: "Target Audience", id: "audience" },
+  { name: "Event Formats", id: "event-formats" },
+  { name: "Contact", id: "contact" },
 ];
 
 export const BRAND_LOGO = "/images/brand-logo/nexus-green.svg";
 export const BRAND_LOGO_WHITE = "/images/brand-logo/nexus-teh-white.svg";
 export const SPEED_PARTNERS_MARQUEE = 300000; // kecepatan scroll (ms)
 export const LINK_REGISTER =
-  " https://event.thetehgroup.com/cyberattack-nexus-manila-2025-the-offsite-retreat-/overview?token=ZT1jNmI4M2RjYS0zMTIzLTRhNmEtYTI1Zi04NDdmYjdlMDdhNTQ%3d";
+  " https://event.thetehgroup.com/cyberattack-nexus-manila-2026-the-offsite-retreat-/overview?token=ZT1jNmI4M2RjYS0zMTIzLTRhNmEtYTI1Zi04NDdmYjdlMDdhNTQ%3d";
 export const TEASER_URL =
   "https://cyberattack-event.com/wp-content/uploads/2024/10/CA-MY-EVENT-DRAFT-2.mp4";
 
@@ -76,7 +76,7 @@ export const GALLERY_COLLAB = [
 export const TOUR_CITIES = [
   {
     city: "Singapore",
-    date: "March 15, 2025",
+    date: "March 15, 2026",
     country: "Singapore",
     attendees: "200+",
     gradient: "from-red-500 to-pink-600",
@@ -85,7 +85,7 @@ export const TOUR_CITIES = [
   },
   {
     city: "Jakarta",
-    date: "April 22, 2025",
+    date: "April 22, 2026",
     country: "Indonesia",
     attendees: "200+",
     gradient: "from-blue-500 to-cyan-600",
@@ -94,7 +94,7 @@ export const TOUR_CITIES = [
   },
   {
     city: "Manila",
-    date: "May 18, 2025",
+    date: "May 18, 2026",
     country: "Philippines",
     attendees: "200+",
     gradient: "from-yellow-500 to-orange-600",
@@ -103,7 +103,7 @@ export const TOUR_CITIES = [
   },
   {
     city: "Bangkok",
-    date: "June 10, 2025",
+    date: "June 10, 2026",
     country: "Thailand",
     attendees: "200+",
     gradient: "from-purple-500 to-pink-600",
@@ -112,7 +112,7 @@ export const TOUR_CITIES = [
   },
   {
     city: "Kuala Lumpur",
-    date: "July 8, 2025",
+    date: "July 8, 2026",
     country: "Malaysia",
     attendees: "200+",
     gradient: "from-emerald-500 to-teal-600",
@@ -121,7 +121,7 @@ export const TOUR_CITIES = [
   },
   {
     city: "Ho Chi Minh",
-    date: "August 5, 2025",
+    date: "August 5, 2026",
     country: "Vietnam",
     attendees: "200+",
     gradient: "from-indigo-500 to-purple-600",
@@ -131,24 +131,84 @@ export const TOUR_CITIES = [
 ];
 
 export const PARTNERS = [
-  { src: "/images/sponsors/akamai.png", alt: "Akamai" },
-  { src: "/images/sponsors/alibaba.png", alt: "Alibaba" },
-  { src: "/images/sponsors/aws.png", alt: "AWS" },
-  { src: "/images/sponsors/cintegrity.png", alt: "Cintegrity" },
-  { src: "/images/sponsors/cloudflare.png", alt: "Cloudflare" },
-  { src: "/images/sponsors/coupa.png", alt: "Coupa" },
-  { src: "/images/sponsors/fortinet.png", alt: "Fortinet" },
-  { src: "/images/sponsors/googlecloud.png", alt: "Google Cloud" },
-  { src: "/images/sponsors/ibm.png", alt: "IBM" },
-  { src: "/images/sponsors/infoblox.png", alt: "Infoblox" },
-  { src: "/images/sponsors/nutanix.png", alt: "Nutanix" },
-  { src: "/images/sponsors/paypal.webp", alt: "PayPal" },
-  { src: "/images/sponsors/pwc.svg", alt: "PwC" },
-  { src: "/images/sponsors/searce.png", alt: "Searce" },
-  { src: "/images/sponsors/senitalone.png", alt: "SentinelOne" },
-  { src: "/images/sponsors/servicenow.png", alt: "ServiceNow" },
-  { src: "/images/sponsors/ssc.png", alt: "SSC" },
-  { src: "/images/sponsors/trend.png", alt: "Trend Micro" },
+  {
+    src: "/images/sponsors/akamai.png",
+    alt: "Akamai",
+    url: "https://www.akamai.com/",
+  },
+  {
+    src: "/images/sponsors/alibaba.png",
+    alt: "Alibaba",
+    url: "https://www.alibabacloud.com/",
+  },
+  {
+    src: "/images/sponsors/aws.png",
+    alt: "AWS",
+    url: "https://aws.amazon.com/",
+  },
+  {
+    src: "/images/sponsors/cintegrity.png",
+    alt: "Cintegrity",
+    url: "https://www.cintegrity.com/",
+  },
+  {
+    src: "/images/sponsors/cloudflare.png",
+    alt: "Cloudflare",
+    url: "https://www.cloudflare.com/",
+  },
+  {
+    src: "/images/sponsors/coupa.png",
+    alt: "Coupa",
+    url: "https://www.coupa.com/",
+  },
+  {
+    src: "/images/sponsors/fortinet.png",
+    alt: "Fortinet",
+    url: "https://www.fortinet.com/",
+  },
+  {
+    src: "/images/sponsors/googlecloud.png",
+    alt: "Google Cloud",
+    url: "https://cloud.google.com/",
+  },
+  { src: "/images/sponsors/ibm.png", alt: "IBM", url: "https://www.ibm.com/" },
+  {
+    src: "/images/sponsors/infoblox.png",
+    alt: "Infoblox",
+    url: "https://www.infoblox.com/",
+  },
+  {
+    src: "/images/sponsors/nutanix.png",
+    alt: "Nutanix",
+    url: "https://www.nutanix.com/",
+  },
+  {
+    src: "/images/sponsors/paypal.webp",
+    alt: "PayPal",
+    url: "https://www.paypal.com/",
+  },
+  { src: "/images/sponsors/pwc.svg", alt: "PwC", url: "https://www.pwc.com/" },
+  {
+    src: "/images/sponsors/searce.png",
+    alt: "Searce",
+    url: "https://www.searce.com/",
+  },
+  {
+    src: "/images/sponsors/senitalone.png",
+    alt: "SentinelOne",
+    url: "https://www.sentinelone.com/",
+  },
+  {
+    src: "/images/sponsors/servicenow.png",
+    alt: "ServiceNow",
+    url: "https://www.servicenow.com/",
+  },
+  { src: "/images/sponsors/ssc.png", alt: "SSC", url: "https://www.ssc.com/" },
+  {
+    src: "/images/sponsors/trend.png",
+    alt: "Trend Micro",
+    url: "https://www.trendmicro.com/",
+  },
 ];
 
 export const EMAIL = "Jeffrey.teh@thetehgroup.com";

@@ -133,7 +133,7 @@ const CityCard = ({ city, index, isActive, onClick, setShowGallery }) => {
             }}
             whileHover={{ scale: 1.05, x: 5 }}
             whileTap={{ scale: 0.95 }}>
-            <span>View Gallery</span>
+            <span>Coming Soon</span>
             <ArrowRight className="w-5 h-5 group-hover/btn:translate-x-1 transition-transform" />
           </motion.button>
 
@@ -211,7 +211,7 @@ export default function ToursSection() {
             initial={{ opacity: 0 }}
             transition={{ duration: 0.8, delay: 0.5 }}
             whileInView={{ opacity: 1 }}>
-            APAC Tech Tour 2025
+            APAC Tech Tour 2026
           </motion.p>
 
           <motion.p

@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 /* eslint-disable prettier/prettier */
 /* eslint-disable no-undef */
 import { motion, useScroll, useTransform, useInView } from "framer-motion";
@@ -23,7 +24,7 @@ const contacts = [
     gradient: "from-blue-500 to-cyan-600",
     role: "Partnership Lead",
     initials: "JT",
-    avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Jeffrey",
+    avatar: "/images/contacts/jeffreyteh.png",
   },
   {
     name: "Kennith Ng",
@@ -43,7 +44,7 @@ const contacts = [
     gradient: "from-emerald-500 to-teal-600",
     role: "Strategic Accounts",
     initials: "ZL",
-    avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Zen",
+    avatar: "/images/contacts/zen.png",
   },
   {
     name: "Johnny Chan",
@@ -275,34 +276,17 @@ const ContactCard = ({ contact, index }) => {
             </motion.div>
           </div>
 
-          {/* WhatsApp Contact Button & Message */}
+          {/* Email Contact Button */}
           <div className="relative flex flex-col items-center">
-            {showWAmsg && (
-              <div className="absolute -top-10 left-1/2 -translate-x-1/2 bg-black/80 text-emerald-300 px-4 py-2 rounded-xl shadow-lg text-sm font-semibold animate-fadein z-20">
-                Opening WhatsApp...
-              </div>
-            )}
             <motion.a
               className={`w-full mt-6 py-3 rounded-xl bg-gradient-to-r ${contact.gradient} text-white font-bold shadow-lg hover:shadow-2xl transition-all duration-300 flex items-center justify-center gap-2 group/btn`}
-              href={getWhatsappUrl(contact.phone)}
-              rel="noopener noreferrer"
-              target="_blank"
-              onClick={handleWA}
+              href={`mailto:${contact.email}?subject=${encodeURIComponent(`Nexus Inquiry for ${contact.name} (${contact.role})`)}&body=${encodeURIComponent(`Hello ${contact.name},\n\nI am interested in Nexus and would like to connect with you regarding your role as ${contact.role}. Please provide more information.\n\nThank you!`)}`}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}>
               <Send className="w-4 h-4 group-hover/btn:translate-x-1 group-hover/btn:-translate-y-1 transition-transform" />
               <span>Contact Now</span>
             </motion.a>
           </div>
-          <style>{`
-          @keyframes fadein {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-          }
-          .animate-fadein {
-            animation: fadein 0.5s ease;
-          }
-        `}</style>
 
           <motion.div
             className={`absolute bottom-0 left-0 right-0 h-1.5 bg-gradient-to-r ${contact.gradient}`}

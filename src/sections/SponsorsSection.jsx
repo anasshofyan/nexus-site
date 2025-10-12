@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 /* eslint-disable prettier/prettier */
 import { useRef, useState } from "react";
 import { motion, useScroll, useSpring, useTransform } from "framer-motion";
@@ -240,9 +241,16 @@ const PartnersMarquee = ({ logos = [], speedMs = 40000 }) => {
 const LogoCard = ({ logo }) => {
   const [isHovered, setIsHovered] = useState(false);
 
+  const handleClick = () => {
+    if (logo.url) {
+      window.open(logo.url, "_blank", "noopener,noreferrer");
+    }
+  };
+
   return (
     <motion.div
       className="flex items-center justify-center min-w-[160px] min-h-[80px] rounded-3xl bg-white/90 backdrop-blur-sm border-2 border-emerald-400/30 shadow-lg cursor-pointer overflow-hidden relative group"
+      onClick={handleClick}
       onHoverEnd={() => setIsHovered(false)}
       onHoverStart={() => setIsHovered(true)}
       transition={{ duration: 0.3 }}

@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { useScroll, useTransform, motion } from "framer-motion";
 import { Menu, X, ChevronDown } from "lucide-react";
 
-import { BRAND_LOGO_WHITE } from "../constants";
+import { BRAND_LOGO_WHITE, MENU_ITEMS } from "../constants";
 
 export const AdvancedNavbar = ({ scrollToSection }) => {
   const { scrollY } = useScroll();
@@ -19,15 +19,6 @@ export const AdvancedNavbar = ({ scrollToSection }) => {
   const [activeSection, setActiveSection] = useState("hero");
   const [, setHoveredItem] = useState(null);
 
-  const navItems = [
-    { name: "Sponsors", id: "sponsors" },
-    { name: "Why", id: "why" },
-    { name: "Tour", id: "tours" },
-    { name: "Target Audience", id: "audience" },
-    { name: "Event Formats", id: "event-formats" },
-    { name: "Contact", id: "contact" },
-  ];
-
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
@@ -35,7 +26,7 @@ export const AdvancedNavbar = ({ scrollToSection }) => {
     window.addEventListener("scroll", handleScroll);
 
     // IntersectionObserver untuk update activeSection
-    const sectionIds = navItems.map((item) => item.id);
+    const sectionIds = MENU_ITEMS.map((item) => item.id);
     const sections = sectionIds
       .map((id) => document.getElementById(id))
       .filter(Boolean);
@@ -65,7 +56,7 @@ export const AdvancedNavbar = ({ scrollToSection }) => {
       window.removeEventListener("scroll", handleScroll);
       window.removeEventListener("scroll", handleSectionScroll);
     };
-  }, [navItems]);
+  }, [MENU_ITEMS]);
 
   const handleNavClick = (id) => {
     scrollToSection(id);
@@ -114,7 +105,7 @@ export const AdvancedNavbar = ({ scrollToSection }) => {
 
             {/* Desktop Navigation */}
             <div className="hidden lg:flex items-center space-x-2">
-              {navItems.map((item, idx) => (
+              {MENU_ITEMS.map((item, idx) => (
                 <div
                   className="relative"
                   key={item.id}
@@ -213,7 +204,7 @@ export const AdvancedNavbar = ({ scrollToSection }) => {
           }`}>
           <div className="px-4 py-6 bg-gradient-to-b from-gray-900 to-gray-800 border-t border-emerald-400/20">
             <div className="space-y-2">
-              {navItems.map((item, idx) => (
+              {MENU_ITEMS.map((item, idx) => (
                 <button
                   className={`group w-full flex items-center justify-between px-4 py-3 rounded-lg transition-all duration-300 ${
                     activeSection === item.id ?
@@ -259,7 +250,7 @@ export const AdvancedNavbar = ({ scrollToSection }) => {
               <button
                 className="w-full px-6 py-3 bg-gradient-to-r from-emerald-500 to-cyan-500 hover:from-emerald-400 hover:to-cyan-400 rounded-lg font-semibold text-gray-900 flex items-center justify-center gap-2 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-emerald-500/50"
                 onClick={() => handleNavClick("contact")}>
-                Get Started
+                Join Us
                 <svg
                   className="w-5 h-5"
                   fill="none"
