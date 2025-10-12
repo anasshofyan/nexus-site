@@ -261,7 +261,7 @@ export const FooterSection = () => {
 
             <p className="text-gray-400 mb-6 leading-relaxed">
               Connecting innovation leaders across Asia-Pacific. Join us for the
-              most transformative tech summit of 2025.
+              most transformative tech summit of 2026.
             </p>
 
             {/* Social Links */}
