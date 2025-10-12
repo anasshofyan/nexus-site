@@ -349,7 +349,7 @@ export const FooterSection = () => {
                   <p
                     className="text-white cursor-pointer"
                     onClick={() => (window.location.href = MAILTO_URL)}>
-                    info@thetehgroup.com
+                    hello@thetehgroup.com
                   </p>
                 </div>
               </motion.div>
