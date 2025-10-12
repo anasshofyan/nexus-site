@@ -34,7 +34,7 @@ const contacts = [
     gradient: "from-purple-500 to-pink-600",
     role: "Business Development",
     initials: "KN",
-    avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Kennith",
+    avatar: "/images/contacts/ken.png",
   },
   {
     name: "Zen Lai",
