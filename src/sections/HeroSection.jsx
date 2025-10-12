@@ -188,7 +188,7 @@ export const HeroSection = ({ containerVariants }) => {
 
           {/* CTA Button with Advanced Effects */}
           <motion.div
-            className="relative inline-block group"
+            className="relative inline-block group mb-20 sm:mb-24 md:mb-32"
             initial={{ opacity: 0, y: 30 }}
             transition={{ duration: 0.8, delay: 0.8 }}
             whileInView={{ opacity: 1, y: 0 }}>
