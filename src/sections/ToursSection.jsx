@@ -129,7 +129,7 @@ const CityCard = ({ city, index, isActive, onClick, setShowGallery }) => {
           <motion.button
             className={`w-full py-3 rounded-xl bg-gradient-to-r ${city.gradient} text-white font-bold shadow-lg hover:shadow-2xl transition-all duration-300 flex items-center justify-center gap-2 group/btn`}
             onClick={() => {
-              setShowGallery({ images: city.gallery, gradient: city.gradient });
+              // setShowGallery({ images: city.gallery, gradient: city.gradient });
             }}
             whileHover={{ scale: 1.05, x: 5 }}
             whileTap={{ scale: 0.95 }}>
