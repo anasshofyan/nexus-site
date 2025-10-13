@@ -334,7 +334,7 @@ const HashtagBadge = ({ tag, index }) => {
   );
 };
 
-export default function ContactSection() {
+export const ContactSection = () => {
   const containerRef = useRef(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -434,4 +434,4 @@ export default function ContactSection() {
       </div>
     </section>
   );
-}
+};

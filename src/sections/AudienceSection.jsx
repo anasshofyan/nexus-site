@@ -161,7 +161,7 @@ const AudienceCard = ({ item, index }) => {
   );
 };
 
-export default function AudienceSection() {
+export const AudienceSection = () => {
   const containerRef = useRef(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -265,4 +265,4 @@ export default function AudienceSection() {
       </div>
     </section>
   );
-}
+};

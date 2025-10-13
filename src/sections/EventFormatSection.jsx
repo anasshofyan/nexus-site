@@ -133,7 +133,7 @@ const cardVariants = {
   },
 };
 
-export const EventFormatsSection = () => {
+export const EventFormatSection = () => {
   const [hoveredCard, setHoveredCard] = useState(null);
   const [selectedFormat, setSelectedFormat] = useState(null);
 

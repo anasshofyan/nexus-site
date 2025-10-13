@@ -150,7 +150,7 @@ const CityCard = ({ city, index, isActive, onClick, setShowGallery }) => {
   );
 };
 
-export default function ToursSection() {
+export const TourSection = () => {
   const [activeCity, setActiveCity] = useState(0);
   const [showGallery, setShowGallery] = useState(false);
   const containerRef = useRef(null);
@@ -266,4 +266,4 @@ export default function ToursSection() {
       </AnimatePresence>
     </section>
   );
-}
+};

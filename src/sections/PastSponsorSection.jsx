@@ -8,7 +8,7 @@ import { PARTNERS } from "../constants";
 
 const SPEED_PARTNERS_MARQUEE = 40000;
 
-export const SponsorsSection = () => {
+export const PastSponsorSection = () => {
   const sectionRef = useRef(null);
 
   const { scrollYProgress } = useScroll({

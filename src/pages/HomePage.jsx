@@ -4,12 +4,12 @@ import { useState } from "react";
 import { TechParticleField } from "../components/TechParticleField";
 import { AdvancedNavbar } from "../components/AdvancedNavbar";
 import { HeroSection } from "../sections/HeroSection";
-import WhySponsorSection from "../sections/WhySponsorSection";
-import AudienceSection from "../sections/AudienceSection";
-import { EventFormatsSection } from "../sections/EventFormatsSection";
-import { SponsorsSection } from "../sections/SponsorsSection";
-import ToursSection from "../sections/ToursSection";
-import ContactSection from "../sections/ContactSections";
+import { PastSponsorSection } from "../sections/PastSponsorSection";
+import { WhySponsorSection } from "../sections/WhySponsorSection";
+import { TourSection } from "../sections/TourSection";
+import { AudienceSection } from "../sections/AudienceSection";
+import { EventFormatSection } from "../sections/EventFormatSection";
+import { ContactSection } from "../sections/ContactSections";
 import { FooterSection } from "../sections/FooterSection";
 
 export const HomePage = () => {
@@ -30,11 +30,11 @@ export const HomePage = () => {
       <TechParticleField />
       <AdvancedNavbar scrollToSection={scrollToSection} />
       <HeroSection scrollToSection={scrollToSection} />
-      <SponsorsSection />
+      <PastSponsorSection />
       <WhySponsorSection />
-      <ToursSection />
+      <TourSection />
       <AudienceSection />
-      <EventFormatsSection />
+      <EventFormatSection />
       <ContactSection />
       <FooterSection />
     </main>
