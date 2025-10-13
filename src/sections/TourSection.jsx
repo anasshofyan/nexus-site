@@ -20,7 +20,7 @@ import {
 import { TOUR_CITIES } from "../constants";
 import { GalleryModal } from "../components/GalleryModal";
 
-const CityCard = ({ city, index, isActive, onClick }) => {
+const CityCard = ({ city, index, isActive, onClick, pattern, img }) => {
   const cardRef = useRef(null);
   const isInView = useInView(cardRef, { once: false, amount: 0.5 });
   const { scrollYProgress } = useScroll({
@@ -55,34 +55,58 @@ const CityCard = ({ city, index, isActive, onClick }) => {
       }}>
       <motion.div
         animate={isActive ? { opacity: 0.4, scale: 1.1 } : {}}
-        className={`absolute inset-0 bg-gradient-to-br ${city.gradient} rounded-3xl blur-2xl opacity-0 group-hover:opacity-40 transition-all duration-500`}
+        className={`absolute inset-0 bg-gradient-to-br ${city.gradient} rounded-3xl blur-2xl opacity-0 group-hover:opacity-40 transition-all duration-500 z-10 pointer-events-none`}
       />
 
       <motion.div
-        className={`relative bg-gradient-to-br from-slate-900/95 to-slate-800/95 backdrop-blur-xl rounded-3xl border-2 ${
+        className={`relative overflow-hidden bg-gradient-to-br from-slate-900/80 to-slate-800/80 backdrop-blur-xl rounded-3xl border-2 ${
           isActive ? "border-emerald-400/80" : "border-emerald-500/30"
         } hover:border-emerald-400/70 overflow-hidden`}
         transition={{ type: "spring", stiffness: 300, damping: 25 }}
         whileHover={{ y: -15, scale: 1.05 }}>
+        {/* Optional image overlay if provided */}
+        {img && (
+          <img
+            alt="city-bg"
+            className="absolute inset-0 z-0 w-full h-full object-cover opacity-15 pointer-events-none"
+            src={img}
+          />
+        )}
+        {/* Pattern background if provided */}
+        {pattern && (
+          <div className="absolute inset-0 z-10 pointer-events-none">
+            {typeof pattern === "string" && pattern.startsWith("<svg") ?
+              <div
+                className="w-full h-full opacity-30 mix-blend-overlay"
+                dangerouslySetInnerHTML={{ __html: pattern }}
+              />
+            : <img
+                alt="pattern"
+                className="w-full h-full object-cover opacity-30 mix-blend-overlay"
+                src={pattern}
+              />
+            }
+          </div>
+        )}
         <div
-          className={`absolute inset-0 bg-gradient-to-br ${city.gradient} opacity-0 group-hover:opacity-10 transition-opacity duration-500`}
+          className={`absolute inset-0 z-20 bg-gradient-to-br ${city.gradient} opacity-0 group-hover:opacity-10 transition-opacity duration-500`}
         />
 
         <div
-          className={`absolute top-0 right-0 w-32 h-32 bg-gradient-to-br ${city.gradient} rounded-bl-full opacity-20`}
+          className={`absolute top-0 right-0 z-30 w-32 h-32 bg-gradient-to-br ${city.gradient} rounded-bl-full opacity-20`}
         />
 
         {isActive && (
           <motion.div
             animate={{ scale: 1 }}
-            className="absolute -top-3 -right-3 z-20"
+            className="absolute -top-3 -right-3 z-40"
             initial={{ scale: 0 }}>
-            <div className="w-6 h-6 rounded-full bg-emerald-500 animate-ping" />
-            <div className="absolute top-0 left-0 w-6 h-6 rounded-full bg-emerald-500" />
+            <div className="w-6 h-6 rounded-full bg-tech-green-500 animate-ping" />
+            <div className="absolute top-0 left-0 w-6 h-6 rounded-full bg-tech-green-500" />
           </motion.div>
         )}
 
-        <div className="relative p-8">
+        <div className="relative z-30 p-8">
           <div className="flex items-start justify-between mb-6">
             <motion.div
               className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${city.gradient} p-3 shadow-2xl relative`}
@@ -168,15 +192,39 @@ export const TourSection = () => {
       className="relative min-h-screen flex items-center justify-center py-32 px-4 overflow-hidden"
       id="tours"
       ref={containerRef}>
+      {/* Pattern SVG background above gradient blobs */}
+      <div className="absolute inset-0 z-0 pointer-events-none">
+        <svg
+          className="w-full h-full"
+          fill="none"
+          height="100%"
+          viewBox="0 0 1440 900"
+          width="100%"
+          xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <pattern
+              height="40"
+              id="pattern-circles"
+              patternUnits="userSpaceOnUse"
+              width="40"
+              x="0"
+              y="0">
+              <circle cx="2" cy="2" fill="#2dd4bf" opacity="0.12" r="2" />
+            </pattern>
+          </defs>
+          <rect fill="url(#pattern-circles)" height="900" width="1440" />
+        </svg>
+      </div>
+
       <motion.div
-        className="absolute inset-0 opacity-20"
+        className="absolute inset-0 opacity-20 z-10 pointer-events-none"
         style={{ y: backgroundY }}>
         <div className="absolute top-32 right-20 w-96 h-96 bg-emerald-500/30 rounded-full blur-3xl" />
         <div className="absolute bottom-32 left-20 w-80 h-80 bg-cyan-500/30 rounded-full blur-3xl" />
         <div className="absolute top-1/2 left-1/3 w-[600px] h-[600px] bg-teal-500/20 rounded-full blur-3xl" />
       </motion.div>
 
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]" />
+      <div className="absolute inset-0 z-20 pointer-events-none bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]" />
 
       <div className="max-w-7xl mx-auto relative z-10 w-full">
         <motion.div
@@ -228,10 +276,12 @@ export const TourSection = () => {
           {TOUR_CITIES.map((city, idx) => (
             <CityCard
               city={city}
+              img={city.img}
               index={idx}
               isActive={activeCity === idx}
               key={idx}
               onClick={setActiveCity}
+              pattern={city.pattern}
               setShowGallery={setShowGallery}
             />
           ))}
@@ -258,8 +308,8 @@ export const TourSection = () => {
       <AnimatePresence>
         {showGallery && (
           <GalleryModal
-            images={showGallery.images}
             backdropGradient={showGallery.gradient}
+            images={showGallery.images}
             onClose={() => setShowGallery(false)}
           />
         )}
