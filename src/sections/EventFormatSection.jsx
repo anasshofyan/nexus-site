@@ -33,7 +33,7 @@ const eventFormats = [
     ],
     image:
       "https://images.unsplash.com/photo-1630672790237-38eeb57cb60b?q=80&w=1171&auto=format&fit=crop",
-    color: "from-emerald-400 to-emerald-600",
+    color: "from-tech-green-400 to-tech-green-600",
     attendees: "1-on-1",
   },
   {
@@ -67,7 +67,7 @@ const eventFormats = [
     ],
     image:
       "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=800&h=600&fit=crop",
-    color: "from-blue-400 to-blue-600",
+    color: "from-brand-400 to-brand-600",
     attendees: "15-20",
   },
   {
@@ -85,7 +85,7 @@ const eventFormats = [
     image:
       "https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800&h=600&fit=crop",
     color: "from-teal-400 to-teal-600",
-    attendees: "50-100",
+    attendees: "300",
   },
   {
     id: 5,
@@ -101,7 +101,7 @@ const eventFormats = [
     ],
     image:
       "https://images.unsplash.com/photo-1632383380175-812d44ec112b?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=880",
-    color: "from-emerald-500 to-teal-600",
+    color: "from-tech-green-500 to-teal-600",
     attendees: "Open",
   },
 ];
@@ -147,7 +147,7 @@ export const EventFormatSection = () => {
           y: [0, -30, 0],
           scale: [1, 1.1, 1],
         }}
-        className="absolute top-20 left-10 h-72 w-64 rounded-full opacity-10 blur-3xl bg-emerald-400"
+        className="absolute top-20 left-10 h-72 w-64 rounded-full opacity-10 blur-3xl bg-tech-green-400"
         transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
       />
       <motion.div
@@ -194,7 +194,7 @@ export const EventFormatSection = () => {
             initial={{ opacity: 0, y: 30 }}
             transition={{ duration: 0.8, delay: 0.3 }}
             whileInView={{ opacity: 1, y: 0 }}>
-            <span className="bg-gradient-to-r from-purple-400 via-pink-400 to-emerald-400 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-purple-400 via-pink-400 to-tech-green-400 bg-clip-text text-transparent">
               The Event Format
             </span>
           </motion.h2>
@@ -233,7 +233,7 @@ export const EventFormatSection = () => {
                           "0 20px 60px rgba(16, 185, 129, 0.4)"
                         : "0 10px 30px rgba(0, 0, 0, 0.3)",
                     }}
-                    className="relative h-full overflow-hidden rounded-2xl bg-blue-900/40 backdrop-blur-sm shadow-xl border-2 border-emerald-400/20 hover:border-emerald-400/60 transition-all duration-500">
+                    className="relative h-full overflow-hidden rounded-2xl bg-brand-700/40 backdrop-blur-sm shadow-xl border-2 border-tech-green-400/20 hover:border-tech-green-400/60 transition-all duration-500">
                     <div className="relative h-64 overflow-hidden">
                       <motion.img
                         alt={format.title}
@@ -244,15 +244,15 @@ export const EventFormatSection = () => {
                         src={format.image}
                         transition={{ duration: 0.6 }}
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-blue-950 via-blue-950/60 to-transparent" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-brand-900 via-brand-900/60 to-transparent" />
 
                       <motion.div
                         animate={{
                           rotate: hoveredCard === format.id ? 360 : 0,
                         }}
-                        className="absolute top-4 right-4 flex h-12 w-12 items-center justify-center rounded-full bg-emerald-400/90 shadow-lg backdrop-blur-sm border-2 border-white"
+                        className="absolute top-4 right-4 flex h-12 w-12 items-center justify-center rounded-full bg-tech-green-400/90 shadow-lg backdrop-blur-sm border-2 border-white"
                         transition={{ duration: 0.6 }}>
-                        <span className="text-blue-900 text-lg font-bold">
+                        <span className="text-brand-900 text-lg font-bold">
                           {index + 1}
                         </span>
                       </motion.div>
@@ -269,11 +269,11 @@ export const EventFormatSection = () => {
                       </motion.div>
 
                       <motion.div
-                        className="absolute bottom-4 left-4 rounded-full bg-white/95 px-4 py-2 backdrop-blur-sm shadow-lg border border-emerald-400/50"
+                        className="absolute bottom-4 left-4 rounded-full bg-white/95 px-4 py-2 backdrop-blur-sm shadow-lg border border-tech-green-400/50"
                         whileHover={{ scale: 1.1 }}>
                         <div className="flex items-center gap-2">
-                          <Users className="h-4 w-4 text-emerald-600" />
-                          <span className="text-blue-900 text-sm font-bold">
+                          <Users className="h-4 w-4 text-tech-green-600" />
+                          <span className="text-brand-900 text-sm font-bold">
                             {format.attendees}
                           </span>
                         </div>
@@ -281,7 +281,7 @@ export const EventFormatSection = () => {
                     </div>
 
                     <div className="p-6">
-                      <h3 className="text-white group-hover:text-emerald-400 mb-3 text-xl font-bold transition-colors">
+                      <h3 className="text-white group-hover:text-tech-green-400 mb-3 text-xl font-bold transition-colors">
                         {format.title}
                       </h3>
                       <p className="mb-4 line-clamp-3 text-sm leading-relaxed text-gray-200">
@@ -298,13 +298,13 @@ export const EventFormatSection = () => {
                             }}
                             viewport={{ once: false }}
                             whileInView={{ opacity: 1, x: 0 }}>
-                            <div className="h-2 w-2 flex-shrink-0 rounded-full bg-emerald-400" />
+                            <div className="h-2 w-2 flex-shrink-0 rounded-full bg-tech-green-400" />
                             <span>{f}</span>
                           </motion.div>
                         ))}
                       </div>
-                      <motion.div className="flex items-center justify-between border-t border-emerald-400/20 pt-4">
-                        <span className="text-emerald-400 text-sm font-semibold">
+                      <motion.div className="flex items-center justify-between border-t border-tech-green-400/20 pt-4">
+                        <span className="text-tech-green-400 text-sm font-semibold">
                           Learn More
                         </span>
                         <motion.div
@@ -317,7 +317,7 @@ export const EventFormatSection = () => {
                             repeat: hoveredCard === format.id ? Infinity : 0,
                             duration: 1.5,
                           }}>
-                          <ChevronRight className="h-5 w-5 text-emerald-400" />
+                          <ChevronRight className="h-5 w-5 text-tech-green-400" />
                         </motion.div>
                       </motion.div>
                     </div>
@@ -346,7 +346,7 @@ export const EventFormatSection = () => {
                           "0 20px 60px rgba(16, 185, 129, 0.4)"
                         : "0 10px 30px rgba(0, 0, 0, 0.3)",
                     }}
-                    className="relative h-full overflow-hidden rounded-2xl bg-blue-900/40 backdrop-blur-sm shadow-xl border-2 border-emerald-400/20 hover:border-emerald-400/60 transition-all duration-500">
+                    className="relative h-full overflow-hidden rounded-2xl bg-brand-700/40 backdrop-blur-sm shadow-xl border-2 border-tech-green-400/20 hover:border-tech-green-400/60 transition-all duration-500">
                     <div className="relative h-64 overflow-hidden">
                       <motion.img
                         alt={format.title}
@@ -357,15 +357,15 @@ export const EventFormatSection = () => {
                         src={format.image}
                         transition={{ duration: 0.6 }}
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-blue-950 via-blue-950/60 to-transparent" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-brand-900 via-brand-900/60 to-transparent" />
 
                       <motion.div
                         animate={{
                           rotate: hoveredCard === format.id ? 360 : 0,
                         }}
-                        className="absolute top-4 right-4 flex h-12 w-12 items-center justify-center rounded-full bg-emerald-400/90 shadow-lg backdrop-blur-sm border-2 border-white"
+                        className="absolute top-4 right-4 flex h-12 w-12 items-center justify-center rounded-full bg-tech-green-400/90 shadow-lg backdrop-blur-sm border-2 border-white"
                         transition={{ duration: 0.6 }}>
-                        <span className="text-blue-900 text-lg font-bold">
+                        <span className="text-brand-900 text-lg font-bold">
                           {3 + index + 1}
                         </span>
                       </motion.div>
@@ -382,11 +382,11 @@ export const EventFormatSection = () => {
                       </motion.div>
 
                       <motion.div
-                        className="absolute bottom-4 left-4 rounded-full bg-white/95 px-4 py-2 backdrop-blur-sm shadow-lg border border-emerald-400/50"
+                        className="absolute bottom-4 left-4 rounded-full bg-white/95 px-4 py-2 backdrop-blur-sm shadow-lg border border-tech-green-400/50"
                         whileHover={{ scale: 1.1 }}>
                         <div className="flex items-center gap-2">
-                          <Users className="h-4 w-4 text-emerald-600" />
-                          <span className="text-blue-900 text-sm font-bold">
+                          <Users className="h-4 w-4 text-tech-green-600" />
+                          <span className="text-brand-900 text-sm font-bold">
                             {format.attendees}
                           </span>
                         </div>
@@ -394,7 +394,7 @@ export const EventFormatSection = () => {
                     </div>
 
                     <div className="p-6">
-                      <h3 className="text-white group-hover:text-emerald-400 mb-3 text-xl font-bold transition-colors">
+                      <h3 className="text-white group-hover:text-tech-green-400 mb-3 text-xl font-bold transition-colors">
                         {format.title}
                       </h3>
                       <p className="mb-4 line-clamp-3 text-sm leading-relaxed text-gray-200">
@@ -411,13 +411,13 @@ export const EventFormatSection = () => {
                             }}
                             viewport={{ once: false }}
                             whileInView={{ opacity: 1, x: 0 }}>
-                            <div className="h-2 w-2 flex-shrink-0 rounded-full bg-emerald-400" />
+                            <div className="h-2 w-2 flex-shrink-0 rounded-full bg-tech-green-400" />
                             <span>{f}</span>
                           </motion.div>
                         ))}
                       </div>
-                      <motion.div className="flex items-center justify-between border-t border-emerald-400/20 pt-4">
-                        <span className="text-emerald-400 text-sm font-semibold">
+                      <motion.div className="flex items-center justify-between border-t border-tech-green-400/20 pt-4">
+                        <span className="text-tech-green-400 text-sm font-semibold">
                           Learn More
                         </span>
                         <motion.div
@@ -430,7 +430,7 @@ export const EventFormatSection = () => {
                             repeat: hoveredCard === format.id ? Infinity : 0,
                             duration: 1.5,
                           }}>
-                          <ChevronRight className="h-5 w-5 text-emerald-400" />
+                          <ChevronRight className="h-5 w-5 text-tech-green-400" />
                         </motion.div>
                       </motion.div>
                     </div>
@@ -446,13 +446,13 @@ export const EventFormatSection = () => {
         {selectedFormat && (
           <motion.div
             animate={{ opacity: 1 }}
-            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-blue-950/90 backdrop-blur-md"
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-brand-900/90 backdrop-blur-md overflow-y-auto"
             exit={{ opacity: 0 }}
             initial={{ opacity: 0 }}
             onClick={() => setSelectedFormat(null)}>
             <motion.div
               animate={{ scale: 1, opacity: 1, y: 0 }}
-              className="w-full max-w-3xl overflow-hidden rounded-2xl bg-blue-900 shadow-2xl border-2 border-emerald-400/50"
+              className="w-full max-w-3xl max-h-screen overflow-y-auto overflow-x-hidden rounded-2xl bg-brand-900 shadow-2xl border-2 border-tech-green-400/50"
               exit={{ scale: 0.9, opacity: 0, y: 20 }}
               initial={{ scale: 0.9, opacity: 0, y: 20 }}
               onClick={(e) => e.stopPropagation()}>
@@ -462,14 +462,14 @@ export const EventFormatSection = () => {
                   className="h-full w-full object-cover"
                   src={selectedFormat.image}
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-blue-950 via-blue-950/60 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-brand-900 via-brand-900/60 to-transparent" />
 
                 <motion.button
-                  className="absolute top-4 right-4 rounded-full bg-white/95 p-3 shadow-lg hover:bg-emerald-400 transition-colors"
+                  className="absolute top-4 right-4 rounded-full bg-white/95 p-3 shadow-lg hover:bg-tech-green-400 transition-colors"
                   onClick={() => setSelectedFormat(null)}
                   whileHover={{ scale: 1.1, rotate: 90 }}
                   whileTap={{ scale: 0.9 }}>
-                  <X className="h-5 w-5 text-blue-900" />
+                  <X className="h-5 w-5 text-brand-900" />
                 </motion.button>
 
                 <div className="absolute right-6 bottom-6 left-6">
@@ -485,7 +485,7 @@ export const EventFormatSection = () => {
                   <h3 className="text-3xl font-bold text-white mb-2">
                     {selectedFormat.title}
                   </h3>
-                  <div className="flex items-center gap-2 text-emerald-400">
+                  <div className="flex items-center gap-2 text-tech-green-400">
                     <Users className="h-4 w-4" />
                     <span className="text-sm font-semibold">
                       {selectedFormat.attendees} Participants
@@ -494,7 +494,7 @@ export const EventFormatSection = () => {
                 </div>
               </div>
 
-              <div className="p-8 bg-gradient-to-b from-blue-900 to-blue-950">
+              <div className="p-8 bg-gradient-to-b from-brand-900 to-brand-900">
                 <p className="mb-6 leading-relaxed text-gray-200 text-lg">
                   {selectedFormat.description}
                 </p>
@@ -504,7 +504,7 @@ export const EventFormatSection = () => {
                     animate={{ opacity: 1, x: 0 }}
                     initial={{ opacity: 0, x: -20 }}
                     transition={{ delay: 0.2 }}>
-                    <h4 className="flex items-center gap-2 font-semibold mb-4 text-emerald-400">
+                    <h4 className="flex items-center gap-2 font-semibold mb-4 text-tech-green-400">
                       <Target className="h-5 w-5" />
                       Key Features
                     </h4>
@@ -516,7 +516,7 @@ export const EventFormatSection = () => {
                           initial={{ opacity: 0, x: -10 }}
                           key={i}
                           transition={{ delay: 0.3 + i * 0.1 }}>
-                          <div className="h-2 w-2 rounded-full bg-emerald-400" />
+                          <div className="h-2 w-2 rounded-full bg-tech-green-400" />
                           {f}
                         </motion.li>
                       ))}

@@ -20,7 +20,7 @@ import {
 import { TOUR_CITIES } from "../constants";
 import { GalleryModal } from "../components/GalleryModal";
 
-const CityCard = ({ city, index, isActive, onClick, setShowGallery }) => {
+const CityCard = ({ city, index, isActive, onClick }) => {
   const cardRef = useRef(null);
   const isInView = useInView(cardRef, { once: false, amount: 0.5 });
   const { scrollYProgress } = useScroll({
@@ -246,10 +246,10 @@ export const TourSection = () => {
             <Navigation className="w-10 h-10 text-emerald-400" />
             <div className="text-left">
               <p className="text-gray-400 text-sm mb-1">
-                Total Expected Attendees
+                Total Expected C-Level Attendees
               </p>
               <p className="text-4xl font-bold bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent">
-                1,200+
+                3000+
               </p>
             </div>
           </div>
