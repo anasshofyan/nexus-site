@@ -17,6 +17,13 @@ import {
   CheckCircle2,
   AlertCircle,
 } from "lucide-react";
+
+import {
+  EMAIL,
+  MAILTO_URL,
+  PHONE_WHATSAPP,
+  WHATSAPP_MESSAGE,
+} from "../constants";
 const API_ENDPOINT = import.meta.env.VITE_API_ENDPOINT;
 const API_KEY = import.meta.env.VITE_API_KEY;
 
@@ -84,7 +91,8 @@ const ContactForm = () => {
       const newFieldErrors = {};
       const trimmedMessage = formData.message.trim();
       if (trimmedMessage.length < 10 || trimmedMessage.length > 5000) {
-        newFieldErrors.message = "Message must be between 10 and 5000 characters.";
+        newFieldErrors.message =
+          "Message must be between 10 and 5000 characters.";
       }
 
       if (!formData.from_name.trim()) {
@@ -135,9 +143,9 @@ const ContactForm = () => {
       if (!response.ok) {
         const apiMessage =
           responseBody?.message ||
-          (Array.isArray(responseBody?.errors)
-            ? responseBody.errors.join(", ")
-            : null);
+          (Array.isArray(responseBody?.errors) ?
+            responseBody.errors.join(", ")
+          : null);
 
         setStatus("error");
         setStatusMessage(
@@ -147,7 +155,10 @@ const ContactForm = () => {
           const parsedErrors = {};
           responseBody.errors.forEach((err) => {
             const lowerErr = err.toLowerCase();
-            if (lowerErr.includes("full name") || lowerErr.includes("fullname")) {
+            if (
+              lowerErr.includes("full name") ||
+              lowerErr.includes("fullname")
+            ) {
               parsedErrors.from_name = err;
             } else if (lowerErr.includes("email")) {
               parsedErrors.from_email = err;
@@ -199,9 +210,9 @@ const ContactForm = () => {
   const inputClasses = (hasError) =>
     [
       "w-full px-4 py-3 rounded-xl bg-slate-800/50 border text-white placeholder-gray-500 focus:outline-none transition-all",
-      hasError
-        ? "border-red-500 focus:border-red-500 focus:ring-2 focus:ring-red-500/20"
-        : "border-slate-700 focus:border-cyan-500 focus:ring-2 focus:ring-cyan-500/20",
+      hasError ?
+        "border-red-500 focus:border-red-500 focus:ring-2 focus:ring-red-500/20"
+      : "border-slate-700 focus:border-cyan-500 focus:ring-2 focus:ring-cyan-500/20",
     ].join(" ");
 
   return (
@@ -284,7 +295,9 @@ const ContactForm = () => {
                   value={formData.from_name}
                 />
                 {fieldErrors.from_name && (
-                  <p className="mt-2 text-sm text-red-400">{fieldErrors.from_name}</p>
+                  <p className="mt-2 text-sm text-red-400">
+                    {fieldErrors.from_name}
+                  </p>
                 )}
               </div>
 
@@ -304,7 +317,9 @@ const ContactForm = () => {
                   value={formData.from_email}
                 />
                 {fieldErrors.from_email && (
-                  <p className="mt-2 text-sm text-red-400">{fieldErrors.from_email}</p>
+                  <p className="mt-2 text-sm text-red-400">
+                    {fieldErrors.from_email}
+                  </p>
                 )}
               </div>
 
@@ -323,7 +338,9 @@ const ContactForm = () => {
                   value={formData.phone}
                 />
                 {fieldErrors.phone && (
-                  <p className="mt-2 text-sm text-red-400">{fieldErrors.phone}</p>
+                  <p className="mt-2 text-sm text-red-400">
+                    {fieldErrors.phone}
+                  </p>
                 )}
               </div>
 
@@ -342,7 +359,9 @@ const ContactForm = () => {
                   value={formData.company}
                 />
                 {fieldErrors.company && (
-                  <p className="mt-2 text-sm text-red-400">{fieldErrors.company}</p>
+                  <p className="mt-2 text-sm text-red-400">
+                    {fieldErrors.company}
+                  </p>
                 )}
               </div>
             </div>
@@ -356,9 +375,9 @@ const ContactForm = () => {
               <textarea
                 className={[
                   "w-full px-4 py-3 rounded-xl bg-slate-800/50 border text-white placeholder-gray-500 focus:outline-none transition-all resize-none",
-                  fieldErrors.message
-                    ? "border-red-500 focus:border-red-500 focus:ring-2 focus:ring-red-500/20"
-                    : "border-slate-700 focus:border-cyan-500 focus:ring-2 focus:ring-cyan-500/20",
+                  fieldErrors.message ?
+                    "border-red-500 focus:border-red-500 focus:ring-2 focus:ring-red-500/20"
+                  : "border-slate-700 focus:border-cyan-500 focus:ring-2 focus:ring-cyan-500/20",
                 ].join(" ")}
                 name="message"
                 onChange={handleChange}
@@ -368,7 +387,9 @@ const ContactForm = () => {
                 value={formData.message}
               />
               {fieldErrors.message && (
-                <p className="mt-2 text-sm text-red-400">{fieldErrors.message}</p>
+                <p className="mt-2 text-sm text-red-400">
+                  {fieldErrors.message}
+                </p>
               )}
             </div>
 
@@ -399,19 +420,17 @@ const ContactForm = () => {
               <div className="flex flex-wrap items-center justify-center gap-6">
                 <a
                   className="flex items-center gap-2 text-cyan-400 hover:text-cyan-300 transition-colors"
-                  href={`mailto:${contactInfo.email}`}>
+                  href={MAILTO_URL}>
                   <Mail className="w-4 h-4" />
-                  <span className="text-sm font-medium">
-                    {contactInfo.email}
-                  </span>
+                  <span className="text-sm font-medium">{EMAIL}</span>
                 </a>
                 <a
                   className="flex items-center gap-2 text-cyan-400 hover:text-cyan-300 transition-colors"
-                  href={`tel:${contactInfo.phone}`}>
+                  href={`https://api.whatsapp.com/send?phone=${PHONE_WHATSAPP}&text=${WHATSAPP_MESSAGE}`}
+                  rel="noopener noreferrer"
+                  target="_blank">
                   <Phone className="w-4 h-4" />
-                  <span className="text-sm font-medium">
-                    {contactInfo.phone}
-                  </span>
+                  <span className="text-sm font-medium">{PHONE_WHATSAPP}</span>
                 </a>
               </div>
             </div>

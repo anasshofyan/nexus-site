@@ -5,7 +5,14 @@ import * as THREE from "three";
 import { Linkedin, Instagram, Phone, Youtube, ArrowUp } from "lucide-react";
 import { motion } from "framer-motion";
 
-import { BRAND_LOGO, MAILTO_URL, MENU_ITEMS } from "../constants";
+import {
+  BRAND_LOGO,
+  EMAIL,
+  MAILTO_URL,
+  MENU_ITEMS,
+  PHONE_WHATSAPP,
+  WHATSAPP_MESSAGE,
+} from "../constants";
 
 const ThreeFooterBackground = () => {
   const mountRef = useRef(null);
@@ -317,16 +324,19 @@ export const FooterSection = () => {
               Get In Touch
             </h3>
             <div className="space-y-4">
-              <motion.div
+              <motion.a
                 className="flex items-start gap-3 text-gray-400"
+                href={`https://api.whatsapp.com/send?phone=${PHONE_WHATSAPP}&text=${WHATSAPP_MESSAGE}`}
+                rel="noopener noreferrer"
+                target="_blank"
                 transition={{ duration: 0.2 }}
                 whileHover={{ x: 4 }}>
                 <Phone className="h-5 w-5 text-emerald-400 mt-0.5 flex-shrink-0" />
                 <div>
                   <p className="text-sm">Call us</p>
-                  <p className="text-white">+852 6801 9775</p>
+                  <p className="text-white">{PHONE_WHATSAPP}</p>
                 </div>
-              </motion.div>
+              </motion.a>
 
               <motion.div
                 className="flex items-start gap-3 text-gray-400"
@@ -349,7 +359,7 @@ export const FooterSection = () => {
                   <p
                     className="text-white cursor-pointer"
                     onClick={() => (window.location.href = MAILTO_URL)}>
-                    hello@thetehgroup.com
+                    {EMAIL}
                   </p>
                 </div>
               </motion.div>
