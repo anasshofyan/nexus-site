@@ -17,8 +17,8 @@ import {
   CheckCircle2,
   AlertCircle,
 } from "lucide-react";
-const API_ENDPOINT = "https://nexus-api.thetehgroup.com/api/sponsorship/submit";
-const API_KEY = "Y71Z17RnYrtR2rzTXeGv";
+const API_ENDPOINT = import.meta.env.VITE_API_ENDPOINT;
+const API_KEY = import.meta.env.VITE_API_KEY;
 
 const contactInfo = {
   name: "Jeffrey TEH",
@@ -70,6 +70,15 @@ const ContactForm = () => {
     setStatus(null);
     setStatusMessage("");
     setFieldErrors({});
+    if (!API_ENDPOINT || !API_KEY) {
+      console.error("Missing contact form API configuration.");
+      setStatus("error");
+      setStatusMessage(
+        "The contact form is temporarily unavailable. Please try again later."
+      );
+      setLoading(false);
+      return;
+    }
 
     try {
       const newFieldErrors = {};
