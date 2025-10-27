@@ -9,8 +9,8 @@ import { WhySponsorSection } from "../sections/WhySponsorSection";
 import { TourSection } from "../sections/TourSection";
 import { AudienceSection } from "../sections/AudienceSection";
 import { EventFormatSection } from "../sections/EventFormatSection";
-import { ContactSection } from "../sections/ContactSections";
 import { FooterSection } from "../sections/FooterSection";
+import ContactFormSection from "../sections/ContactFormSection";
 
 export const HomePage = () => {
   const [, setIsMenuOpen] = useState(false);
@@ -35,7 +35,7 @@ export const HomePage = () => {
       <TourSection />
       <AudienceSection />
       <EventFormatSection />
-      <ContactSection />
+      <ContactFormSection />
       <FooterSection />
     </main>
   );

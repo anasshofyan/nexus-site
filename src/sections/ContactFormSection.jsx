@@ -17,12 +17,8 @@ import {
   CheckCircle2,
   AlertCircle,
 } from "lucide-react";
-import emailjs from "@emailjs/browser";
-
-// GANTI DENGAN KEY ANDA DARI EMAILJS
-const EMAILJS_SERVICE_ID = "YOUR_SERVICE_ID";
-const EMAILJS_TEMPLATE_ID = "YOUR_TEMPLATE_ID";
-const EMAILJS_PUBLIC_KEY = "YOUR_PUBLIC_KEY";
+const API_ENDPOINT = "https://nexus-api.thetehgroup.com/api/sponsorship/submit";
+const API_KEY = "Y71Z17RnYrtR2rzTXeGv";
 
 const contactInfo = {
   name: "Jeffrey TEH",
@@ -54,37 +50,118 @@ const ContactForm = () => {
   });
   const [loading, setLoading] = useState(false);
   const [status, setStatus] = useState(null); // 'success' | 'error' | null
+  const [statusMessage, setStatusMessage] = useState("");
+  const [fieldErrors, setFieldErrors] = useState({});
 
   const handleChange = (e) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
     });
+    setFieldErrors((prev) => ({
+      ...prev,
+      [e.target.name]: undefined,
+    }));
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
     setStatus(null);
+    setStatusMessage("");
+    setFieldErrors({});
 
     try {
-      // Kirim email via EmailJS
-      await emailjs.send(
-        EMAILJS_SERVICE_ID,
-        EMAILJS_TEMPLATE_ID,
-        {
-          from_name: formData.from_name,
-          from_email: formData.from_email,
-          phone: formData.phone,
-          company: formData.company,
-          message: formData.message,
-          to_name: contactInfo.name,
-          to_email: contactInfo.email,
+      const newFieldErrors = {};
+      const trimmedMessage = formData.message.trim();
+      if (trimmedMessage.length < 10 || trimmedMessage.length > 5000) {
+        newFieldErrors.message = "Message must be between 10 and 5000 characters.";
+      }
+
+      if (!formData.from_name.trim()) {
+        newFieldErrors.from_name = "Full name is required.";
+      }
+
+      if (!formData.from_email.trim()) {
+        newFieldErrors.from_email = "Email address is required.";
+      }
+
+      if (Object.keys(newFieldErrors).length > 0) {
+        setStatus("error");
+        setStatusMessage("Please fix the highlighted fields.");
+        setFieldErrors(newFieldErrors);
+        return;
+      }
+
+      const response = await fetch(API_ENDPOINT, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "X-Api-Key": API_KEY,
         },
-        EMAILJS_PUBLIC_KEY
-      );
+        body: JSON.stringify({
+          fullname: formData.from_name,
+          email: formData.from_email,
+          phone_number: formData.phone,
+          company_name: formData.company,
+          message: formData.message,
+        }),
+      });
+      const responseBody = await response.json().catch(() => null);
+
+      if (response.status === 429) {
+        setFieldErrors({});
+        setStatus("error");
+        setStatusMessage(
+          responseBody?.message ||
+            "You have made too many requests. Please wait a moment and try again."
+        );
+        setTimeout(() => {
+          setStatus(null);
+          setStatusMessage("");
+        }, 5000);
+        return;
+      }
+
+      if (!response.ok) {
+        const apiMessage =
+          responseBody?.message ||
+          (Array.isArray(responseBody?.errors)
+            ? responseBody.errors.join(", ")
+            : null);
+
+        setStatus("error");
+        setStatusMessage(
+          apiMessage || `Failed to submit form. Status: ${response.status}`
+        );
+        if (Array.isArray(responseBody?.errors)) {
+          const parsedErrors = {};
+          responseBody.errors.forEach((err) => {
+            const lowerErr = err.toLowerCase();
+            if (lowerErr.includes("full name") || lowerErr.includes("fullname")) {
+              parsedErrors.from_name = err;
+            } else if (lowerErr.includes("email")) {
+              parsedErrors.from_email = err;
+            } else if (lowerErr.includes("phone")) {
+              parsedErrors.phone = err;
+            } else if (lowerErr.includes("company")) {
+              parsedErrors.company = err;
+            } else if (lowerErr.includes("message")) {
+              parsedErrors.message = err;
+            }
+          });
+
+          setFieldErrors(parsedErrors);
+        }
+        return;
+      }
 
       setStatus("success");
+      setStatusMessage(
+        responseBody?.message ||
+          "Message sent successfully! We'll contact you soon."
+      );
+      setFieldErrors({});
       setFormData({
         from_name: "",
         from_email: "",
@@ -94,15 +171,29 @@ const ContactForm = () => {
       });
 
       // Hide success message after 5 seconds
-      setTimeout(() => setStatus(null), 5000);
+      setTimeout(() => {
+        setStatus(null);
+        setStatusMessage("");
+      }, 5000);
     } catch (error) {
-      console.error("Email send error:", error);
+      console.error("Form submission error:", error);
       setStatus("error");
-      setTimeout(() => setStatus(null), 5000);
+      setStatusMessage(
+        error?.message || "Failed to send message. Please try again."
+      );
+      setFieldErrors({});
     } finally {
       setLoading(false);
     }
   };
+
+  const inputClasses = (hasError) =>
+    [
+      "w-full px-4 py-3 rounded-xl bg-slate-800/50 border text-white placeholder-gray-500 focus:outline-none transition-all",
+      hasError
+        ? "border-red-500 focus:border-red-500 focus:ring-2 focus:ring-red-500/20"
+        : "border-slate-700 focus:border-cyan-500 focus:ring-2 focus:ring-cyan-500/20",
+    ].join(" ");
 
   return (
     <motion.div
@@ -146,7 +237,8 @@ const ContactForm = () => {
               initial={{ opacity: 0, y: -20 }}>
               <CheckCircle2 className="w-5 h-5 text-emerald-400 flex-shrink-0" />
               <p className="text-emerald-400 font-medium">
-                Message sent successfully! We'll contact you soon.
+                {statusMessage ||
+                  "Message sent successfully! We'll contact you soon."}
               </p>
             </motion.div>
           )}
@@ -158,7 +250,8 @@ const ContactForm = () => {
               initial={{ opacity: 0, y: -20 }}>
               <AlertCircle className="w-5 h-5 text-red-400 flex-shrink-0" />
               <p className="text-red-400 font-medium">
-                Failed to send message. Please try again or email us directly.
+                {statusMessage ||
+                  "Failed to send message. Please try again or email us directly."}
               </p>
             </motion.div>
           )}
@@ -173,7 +266,7 @@ const ContactForm = () => {
                   Full Name *
                 </label>
                 <input
-                  className="w-full px-4 py-3 rounded-xl bg-slate-800/50 border border-slate-700 text-white placeholder-gray-500 focus:outline-none focus:border-cyan-500 focus:ring-2 focus:ring-cyan-500/20 transition-all"
+                  className={inputClasses(Boolean(fieldErrors.from_name))}
                   name="from_name"
                   onChange={handleChange}
                   placeholder="John Doe"
@@ -181,6 +274,9 @@ const ContactForm = () => {
                   type="text"
                   value={formData.from_name}
                 />
+                {fieldErrors.from_name && (
+                  <p className="mt-2 text-sm text-red-400">{fieldErrors.from_name}</p>
+                )}
               </div>
 
               {/* Email */}
@@ -190,7 +286,7 @@ const ContactForm = () => {
                   Email Address *
                 </label>
                 <input
-                  className="w-full px-4 py-3 rounded-xl bg-slate-800/50 border border-slate-700 text-white placeholder-gray-500 focus:outline-none focus:border-cyan-500 focus:ring-2 focus:ring-cyan-500/20 transition-all"
+                  className={inputClasses(Boolean(fieldErrors.from_email))}
                   name="from_email"
                   onChange={handleChange}
                   placeholder="john@company.com"
@@ -198,6 +294,9 @@ const ContactForm = () => {
                   type="email"
                   value={formData.from_email}
                 />
+                {fieldErrors.from_email && (
+                  <p className="mt-2 text-sm text-red-400">{fieldErrors.from_email}</p>
+                )}
               </div>
 
               {/* Phone */}
@@ -207,13 +306,16 @@ const ContactForm = () => {
                   Phone Number
                 </label>
                 <input
-                  className="w-full px-4 py-3 rounded-xl bg-slate-800/50 border border-slate-700 text-white placeholder-gray-500 focus:outline-none focus:border-cyan-500 focus:ring-2 focus:ring-cyan-500/20 transition-all"
+                  className={inputClasses(Boolean(fieldErrors.phone))}
                   name="phone"
                   onChange={handleChange}
                   placeholder="+1 234 567 8900"
                   type="tel"
                   value={formData.phone}
                 />
+                {fieldErrors.phone && (
+                  <p className="mt-2 text-sm text-red-400">{fieldErrors.phone}</p>
+                )}
               </div>
 
               {/* Company */}
@@ -223,13 +325,16 @@ const ContactForm = () => {
                   Company Name
                 </label>
                 <input
-                  className="w-full px-4 py-3 rounded-xl bg-slate-800/50 border border-slate-700 text-white placeholder-gray-500 focus:outline-none focus:border-cyan-500 focus:ring-2 focus:ring-cyan-500/20 transition-all"
+                  className={inputClasses(Boolean(fieldErrors.company))}
                   name="company"
                   onChange={handleChange}
                   placeholder="Company Inc."
                   type="text"
                   value={formData.company}
                 />
+                {fieldErrors.company && (
+                  <p className="mt-2 text-sm text-red-400">{fieldErrors.company}</p>
+                )}
               </div>
             </div>
 
@@ -240,7 +345,12 @@ const ContactForm = () => {
                 Message *
               </label>
               <textarea
-                className="w-full px-4 py-3 rounded-xl bg-slate-800/50 border border-slate-700 text-white placeholder-gray-500 focus:outline-none focus:border-cyan-500 focus:ring-2 focus:ring-cyan-500/20 transition-all resize-none"
+                className={[
+                  "w-full px-4 py-3 rounded-xl bg-slate-800/50 border text-white placeholder-gray-500 focus:outline-none transition-all resize-none",
+                  fieldErrors.message
+                    ? "border-red-500 focus:border-red-500 focus:ring-2 focus:ring-red-500/20"
+                    : "border-slate-700 focus:border-cyan-500 focus:ring-2 focus:ring-cyan-500/20",
+                ].join(" ")}
                 name="message"
                 onChange={handleChange}
                 placeholder="Tell us about your sponsorship interests and goals..."
@@ -248,6 +358,9 @@ const ContactForm = () => {
                 rows={6}
                 value={formData.message}
               />
+              {fieldErrors.message && (
+                <p className="mt-2 text-sm text-red-400">{fieldErrors.message}</p>
+              )}
             </div>
 
             {/* Submit Button */}
